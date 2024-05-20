@@ -4,7 +4,7 @@ import { Links } from '../router'
 function AppRouter() {
   const navigate = useNavigate();
   useEffect(() => {
-    navigate('/login')
+    navigate('/signIn')
   }, []);
   return (
     <Routes>
