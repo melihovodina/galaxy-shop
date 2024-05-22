@@ -2,6 +2,17 @@ html, body {
   margin: 0;
   width: 100%;
   height: 100%;
+  font-family: 'CormorantGaramond-Italic';
+}
+
+@font-face {
+  font-family: 'Allura';
+  src: url(../public/fonts/Allura-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'CormorantGaramond-Italic';
+  src: url(../public/fonts/CormorantGaramond-Italic.ttf);
 }
 
 #root {
