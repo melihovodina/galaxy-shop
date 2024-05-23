@@ -12,7 +12,7 @@ html, body {
 
 @font-face {
   font-family: 'CormorantGaramond-Italic';
-  src: url(../public/fonts/CormorantGaramond-Italic.ttf);
+  src: url(../public/fonts/CormorantGaramond-Regular.ttf);
 }
 
 #root {
