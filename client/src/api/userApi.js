@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://localhost:5299';
+axios.defaults.baseURL = 'http://localhost:5299';
 
 export async function signIn(email, password) {
     let result;

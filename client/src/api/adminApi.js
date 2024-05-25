@@ -1,6 +1,8 @@
 import axios from 'axios';
 import formData from 'form-data';
 
+axios.defaults.baseURL = 'http://localhost:5299';
+
 export async function checkKey(secretKey) {
     try {
         const result = await axios({
