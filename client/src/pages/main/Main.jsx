@@ -11,6 +11,9 @@ const Main = () => {
       <div className='main-header'>
         <button className='main-header-button' onClick={() => navigate('/signIn')}>Sign In</button>
         <button className='main-header-button' onClick={() => navigate()}>Cart</button>
+        <div className='main-header-input-block'>
+          <input className='main-header-input' placeholder='Search'/>
+        </div>
         <p className='main-header-name'>Galaxy Shop</p>
       </div>
     </div>

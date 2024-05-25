@@ -69,23 +69,59 @@
     border-radius: 20px;
     background-color: rgba(43, 43, 43, 0.8);
     margin-bottom: 7%;
+    animation: login-exit-button-out 0.3s ease-in-out forwards;
 }
 
 .login-cross {
     color: white;
-    transition: color 1s linear;
+    animation: cross-color-change-out 0.6s ease-in-out forwards;
 }
 
 .login-exit-button:hover .login-cross{
-    animation: cross-color-change 0.3s ease-in-out forwards;
+    animation: cross-color-change-in 0.6s ease-in-out forwards;
 }
 
-@keyframes cross-color-change {
+.login-exit-button:hover{
+    animation: login-exit-button-in 0.3s ease-in-out forwards;
+}
+
+@keyframes cross-color-change-in {
     0% {
       color: white;
+      scale: 1;
     }
     100% {
       color: rgb(233, 0, 0);
+      scale: 1.2;
+    }
+}
+
+@keyframes login-exit-button-in {
+    0% {
+      scale: 1;
+    }
+    100% {
+      scale: 1.2;
+    }
+}
+
+@keyframes cross-color-change-out {
+    0% {
+      color: rgb(233, 0, 0);
+      scale: 1.2;
+    }
+    100% {
+      color: white;
+      scale: 1;
+    }
+}
+
+@keyframes login-exit-button-out {
+    0% {
+      scale: 1.2;
+    }
+    100% {
+      scale: 1;
     }
 }
 
@@ -145,24 +181,61 @@
     border: 0px;
     border-radius: 20px;
     background-color: rgba(43, 43, 43, 0.8);
+    animation: login-button-out 0.3s ease-in-out forwards;
 }
 
 .login-check {
     color: white;
     transition: color 1s linear;
     scale: 2;
+    animation: check-color-change-out 0.6s ease-in-out forwards;
 }
 
 .login-button:hover .login-check{
-    animation: check-color-change 0.6s ease-in-out forwards;
+    animation: check-color-change-in 0.6s ease-in-out forwards;
 }
 
-@keyframes check-color-change {
+.login-button:hover{
+    animation: login-button-in 0.3s ease-in-out forwards;
+}
+
+@keyframes check-color-change-in {
     0% {
       color: white;
+      scale: 2;
     }
     100% {
       color: rgb(140, 233, 0);
+      scale: 2.2;
+    }
+}
+
+@keyframes login-button-in {
+    0% {
+      scale: 1;
+    }
+    100% {
+      scale: 1.2;
+    }
+}
+
+@keyframes check-color-change-out {
+    0% {
+      color: rgb(140, 233, 0);
+      scale: 2.2;
+    }
+    100% {
+      color: white;
+      scale: 2;
+    }
+}
+
+@keyframes login-button-out {
+    0% {
+      scale: 1.2;
+    }
+    100% {
+      scale: 1;
     }
 }
 
