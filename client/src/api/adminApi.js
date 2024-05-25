@@ -1,6 +1,5 @@
 import axios from 'axios';
 import formData from 'form-data';
-import fs from 'fs-extra';
 
 export async function checkKey(secretKey) {
     try {
@@ -18,7 +17,7 @@ export async function checkKey(secretKey) {
 export async function createCategory(name, imagePath, typesId, secretKey) {
     const form = new formData();
     form.append('Name', name);
-    form.append('Image', fs.createReadStream(imagePath));
+    form.append('Image', imagePath);
     form.append('TypesId', JSON.stringify(typesId));    
     try {
         const result = await axios({
@@ -40,7 +39,7 @@ export async function updateCategory(id, name, imagePath, typesId, secretKey) {
     const form = new formData();
     form.append('Id', id);
     form.append('Name', name);
-    form.append('Image', fs.createReadStream(imagePath));
+    form.append('Image', imagePath);
     form.append('TypesId', JSON.stringify(typesId));    
     try {
         const result = await axios({
@@ -139,7 +138,7 @@ export async function deleteParameter(id, secretKey) {
     }
 }
 
-export async function createType(parrentId = null, name, parameterId, categoryId, secretKey) {
+export async function createType(parrentId = null, name, parameterId, categoryId, allowValues, typesId, secretKey) {
     try {
         const result = await axios({
             method: 'put',
@@ -163,7 +162,7 @@ export async function createType(parrentId = null, name, parameterId, categoryId
     }
 }
 
-export async function updateType(id, parrentId = null, name, parameterId, categoryId, secretKey) {
+export async function updateType(id, parrentId = null, name, parameterId, categoryId, allowValues, typesId, secretKey) {
     try {
         const result = await axios({
             method: 'patch',
@@ -214,7 +213,7 @@ export async function createProduct(name, description, price, discount, num, ima
     form.append('Price', price);
     form.append('Discount', discount);
     form.append("Number", num);
-    form.append('Images', fs.createReadStream(imagesPath));
+    form.append('Images', imagesPath);
     form.append("ImagesLinks", imagesLinks)
     form.append('TypesId', JSON.stringify(typesId));
     form.append('ParamValues', paramValues)    
@@ -242,7 +241,7 @@ export async function updateProduct(id, name, description, price, discount, num,
     form.append('Price', price);
     form.append('Discount', discount);
     form.append("Number", num);
-    form.append('Images', fs.createReadStream(imagesPath));
+    form.append('Images', imagesPath);
     form.append("ImagesLinks", imagesLinks)
     form.append('TypesId', JSON.stringify(typesId));
     form.append('ParamValues', paramValues)    

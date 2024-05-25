@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
 import { Routes, Route, useNavigate} from "react-router-dom";
 import { Links } from '../router'
+
 function AppRouter() {
   const navigate = useNavigate();
   useEffect(() => {
-    navigate('/signIn')
+    navigate('/main')
   }, []);
+  
   return (
     <Routes>
       {Links.map(route => {

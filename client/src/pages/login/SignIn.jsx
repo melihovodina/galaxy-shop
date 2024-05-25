@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import { signIn } from '../../api/userApi';
 import FallingDots from '../../components/fallingDots/FallingDots'
 import './login.css'
@@ -26,7 +27,12 @@ const SignIn = () => {
     <div className='login-main'>
       <FallingDots/>
       <div className='login-field'>
-        <h1 className='login-header'>Sign In</h1>
+        <div className='login-header'>
+          <h1 className='login-title'>Sign In</h1>
+          <button className='login-exit-button' onClick={() => navigate('/main')}>
+            <CloseRoundedIcon className='login-cross'/>
+          </button>
+        </div>
         <input 
         className='login-input' 
         placeholder='Email'
