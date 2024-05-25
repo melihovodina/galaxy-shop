@@ -33,13 +33,27 @@
     position: relative;
     margin: 0;
     border: 0px;
-    font-family: 'Allura';
+    font-family: 'Lexend-light';
     font-size: 80px;
     margin-bottom: 30px;
     cursor: default;
     user-select: none;
-    margin-right: 10%;
-    margin-left: 13%;
+    margin-right: 8%;
+    margin-left: 12%;
+}
+
+.login-title-up{
+    color: white;
+    position: relative;
+    margin: 0;
+    border: 0px;
+    font-family: 'Lexend-light';
+    font-size: 80px;
+    margin-bottom: 30px;
+    cursor: default;
+    user-select: none;
+    margin-right: 7%;
+    margin-left: 11%;
 }
 
 .login-exit-button {
@@ -84,7 +98,7 @@
     margin-bottom: 30px;
     border: 0px;
     cursor: pointer;
-    font-family: 'CormorantGaramond-Italic';
+    font-family: 'Lexend-extralight';
     font-size: 25px;
     padding-left: 15px;
 }
@@ -158,8 +172,15 @@
     }
 
     .login-title {
+        font-size: 60px;
         margin-right: 13%;
-        margin-left: 21%;
+        margin-left: 24%;
+    }
+
+    .login-title-up {
+        font-size: 60px;
+        margin-right: 11%;
+        margin-left: 22%;
     }
 
     .login-exit-button {
@@ -188,8 +209,15 @@
     .login-title {
         font-size: 150px;
         margin-bottom: 50px;
-        margin-right: 12%;
-        margin-left: 15%;
+        margin-right: 10%;
+        margin-left: 13%;
+    }
+
+    .login-title-up {
+        font-size: 150px;
+        margin-bottom: 50px;
+        margin-right: 9%;
+        margin-left: 13%;
     }
 
     .login-exit-button {
@@ -204,7 +232,7 @@
 
     .login-input {
         width: 40%;
-        height: 50px;
+        height: 60px;
         font-size: 40px;
     }
 
@@ -224,6 +252,6 @@
 
 @media (max-width: 376px) {
     .login-title {
-        font-size: 65px;
+        font-size: 55px;
     }
 } /*special for iphone SE*/

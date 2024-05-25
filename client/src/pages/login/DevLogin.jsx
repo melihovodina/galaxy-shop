@@ -14,7 +14,9 @@ const DevLogin = () => {
 
   const handleSubmit = async () => {
     try {
+      setLoading(true)
       const response = await checkKey(secretKey);
+      setLoading(false);
       if (response.status === 200) {
         navigate('/main')
       }

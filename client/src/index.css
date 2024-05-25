@@ -2,7 +2,7 @@ html, body {
   margin: 0;
   width: 100%;
   height: 100%;
-  font-family: 'CormorantGaramond-Italic';
+  font-family: 'Lexend-extralight';
 }
 
 @font-face {
@@ -11,8 +11,23 @@ html, body {
 }
 
 @font-face {
-  font-family: 'CormorantGaramond-Italic';
-  src: url(../public/fonts/CormorantGaramond-Regular.ttf);
+  font-family: 'Lexend-thin';
+  src: url(../public/fonts/Lexend-Thin.ttf);
+}
+
+@font-face {
+  font-family: 'Lexend-extralight';
+  src: url(../public/fonts/Lexend-ExtraLight.ttf);
+}
+
+@font-face {
+  font-family: 'Lexend-light';
+  src: url(../public/fonts/Lexend-Light.ttf);
+}
+
+@font-face {
+  font-family: 'Lexend-regular';
+  src: url(../public/fonts/Lexend-Regular.ttf);
 }
 
 #root {

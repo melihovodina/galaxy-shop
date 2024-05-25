@@ -15,7 +15,9 @@ const SignUp = () => {
 
   const handleSubmit = async () => {
     try {
+      setLoading(true);
       const response = await signUp(email, password);
+      setLoading(false);
       if (response.status === 200) {
         navigate('/main')
       }
@@ -31,7 +33,7 @@ const SignUp = () => {
       <Loading loading={loading} loadingClass="loading">
         <div className='login-field loading'>
           <div className='login-header'>
-            <h1 className='login-title'>Sign Up</h1>
+            <h1 className='login-title-up'>Sign Up</h1>
             <button className='login-exit-button' onClick={() => navigate('/main')}>
               <CloseRoundedIcon className='login-cross'/>
             </button>
