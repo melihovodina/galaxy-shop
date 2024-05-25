@@ -5,7 +5,9 @@ import { Links } from '../router'
 function AppRouter() {
   const navigate = useNavigate();
   useEffect(() => {
-    navigate('/main')
+    if (window.location.pathname === '/') {
+      navigate('/main');
+    }
   }, []);
   
   return (
