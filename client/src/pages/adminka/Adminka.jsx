@@ -1,14 +1,14 @@
-import React from 'react';
-import { Admin, Resource, List } from 'react-admin';
-import { UsersList } from '../../components/adminka/UsersList';
-import jsonServerProvider from 'ra-data-json-server';
+import React from 'react'
+import { Admin, Resource } from 'react-admin'
+import restProvider from 'ra-data-simple-rest'
+import UsersList from '../../components/adminka/UsersList'
 
-const dataProvider = jsonServerProvider('https://jsonplaceholder.typicode.com');
-
-const App = () => (
-    <Admin dataProvider={dataProvider}>
-        <Resource name="users" list={UsersList} />
+const Adminka = () => {
+  return (
+    <Admin dataProvider={restProvider('http://localhost:5299')}>
+        <Resource name="users" list={UsersList}/>
     </Admin>
-);
+  )
+}
 
-export default App;
+export default Adminka

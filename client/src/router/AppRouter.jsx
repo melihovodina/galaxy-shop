@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { Routes, Route, useNavigate} from "react-router-dom";
 import { Links } from '../router'
+import Adminka from '../pages/adminka/Adminka';
 
 function AppRouter() {
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ function AppRouter() {
       navigate('/main');
     }
   }, []);
-  
+
   return (
     <Routes>
       {Links.map(route => {
@@ -22,7 +23,9 @@ function AppRouter() {
           />
         );
       })}
+      <Route path="/admin" element={<Adminka />} />
     </Routes>
   )
 }
+
 export default AppRouter

@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import { signIn } from '../../api/userApi';
+import { AuthContext } from '../../components/AuthContext';
 import FallingDots from '../../components/fallingDots/FallingDots'
-import Loading from '../../components/loading/Loading';
+import Loading from '../../components/Loading';
 import './login.css'
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const { isLogged, setIsLogged } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
@@ -19,6 +21,7 @@ const SignIn = () => {
       const response = await signIn(email, password);
       setLoading(false)
       if (response.status === 200) {
+        setIsLogged(true)
         navigate('/main')
       }
     } catch (error) {

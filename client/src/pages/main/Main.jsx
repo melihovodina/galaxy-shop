@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import FallingDots from '../../components/fallingDots/FallingDots';
+import Header from '../../components/header/Header';
 import './main.css'
 
 const Main = () => {
@@ -8,14 +9,7 @@ const Main = () => {
   return (
     <div className='main'>
       <FallingDots/>
-      <div className='main-header'>
-        <button className='main-header-button' onClick={() => navigate('/signIn')}>Sign In</button>
-        <button className='main-header-button' onClick={() => navigate()}>Cart</button>
-        <div className='main-header-input-block'>
-          <input className='main-header-input' placeholder='Search'/>
-        </div>
-        <p className='main-header-name'>Galaxy Shop</p>
-      </div>
+      <Header/>
     </div>
   )
 }

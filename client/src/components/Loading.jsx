@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CircularProgress from '@mui/material/CircularProgress';
-import '../../index.css'
+import '../index.css'
 
 // Определение компонента Loading
 const Loading = ({ children, loading, loadingClass }) => {

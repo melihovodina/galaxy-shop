@@ -4,7 +4,7 @@ import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import { checkKey } from '../../api/adminApi'
 import FallingDots from '../../components/fallingDots/FallingDots'
-import Loading from '../../components/loading/Loading';
+import Loading from '../../components/Loading';
 import './login.css'
 
 const DevLogin = () => {
