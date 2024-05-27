@@ -59,75 +59,19 @@
 .login-exit-button {
     width: 40px;
     height: 40px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
     position: relative;
-    border: 0px;
     border-radius: 20px;
-    background-color: rgba(43, 43, 43, 0.8);
     margin-bottom: 7%;
-    animation: login-exit-button-out 0.3s ease-in-out forwards;
+    background-color: rgba(52, 52, 52, 0.8);
 }
 
 .login-cross {
     color: white;
-    animation: cross-color-change-out 0.6s ease-in-out forwards;
-}
-
-.login-exit-button:hover .login-cross{
-    animation: cross-color-change-in 0.6s ease-in-out forwards;
-}
-
-.login-exit-button:hover{
-    animation: login-exit-button-in 0.3s ease-in-out forwards;
-}
-
-@keyframes cross-color-change-in {
-    0% {
-      color: white;
-      scale: 1;
-    }
-    100% {
-      color: rgb(233, 0, 0);
-      scale: 1.2;
-    }
-}
-
-@keyframes login-exit-button-in {
-    0% {
-      scale: 1;
-    }
-    100% {
-      scale: 1.2;
-    }
-}
-
-@keyframes cross-color-change-out {
-    0% {
-      color: rgb(233, 0, 0);
-      scale: 1.2;
-    }
-    100% {
-      color: white;
-      scale: 1;
-    }
-}
-
-@keyframes login-exit-button-out {
-    0% {
-      scale: 1.2;
-    }
-    100% {
-      scale: 1;
-    }
 }
 
 .login-input {
     width: 35%;
-    height: 35px;
+    height: 40px;
     border-radius: 15px;
     background-color: rgba(43, 43, 43, 0.8);
     color: white;
@@ -176,67 +120,13 @@
 .login-button {
     width: 100px;
     height: 80px;
-    cursor: pointer;
     margin-top: 130px;
-    border: 0px;
     border-radius: 20px;
-    background-color: rgba(43, 43, 43, 0.8);
-    animation: login-button-out 0.3s ease-in-out forwards;
+    background-color: rgba(52, 52, 52, 0.8);
 }
 
 .login-check {
-    color: white;
-    transition: color 1s linear;
-    scale: 2;
-    animation: check-color-change-out 0.6s ease-in-out forwards;
-}
-
-.login-button:hover .login-check{
-    animation: check-color-change-in 0.6s ease-in-out forwards;
-}
-
-.login-button:hover{
-    animation: login-button-in 0.3s ease-in-out forwards;
-}
-
-@keyframes check-color-change-in {
-    0% {
-      color: white;
-      scale: 2;
-    }
-    100% {
-      color: rgb(140, 233, 0);
-      scale: 2.2;
-    }
-}
-
-@keyframes login-button-in {
-    0% {
-      scale: 1;
-    }
-    100% {
-      scale: 1.2;
-    }
-}
-
-@keyframes check-color-change-out {
-    0% {
-      color: rgb(140, 233, 0);
-      scale: 2.2;
-    }
-    100% {
-      color: white;
-      scale: 2;
-    }
-}
-
-@keyframes login-button-out {
-    0% {
-      scale: 1.2;
-    }
-    100% {
-      scale: 1;
-    }
+    color: white;   
 }
 
 @media (max-width: 768px) {

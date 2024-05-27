@@ -1,0 +1,139 @@
+.button {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0px;
+  user-select: none;
+}
+
+.icon {
+  scale: var(--children-scale-from);
+  color: white;
+}
+
+.hovered {
+  animation: scaling-in 0.3s ease-in-out forwards;
+}
+
+.notHovered {
+  animation: scaling-out 0.3s ease-in-out forwards;
+}
+  
+@keyframes scaling-in {
+  0% {
+    scale: var(--scale-from);
+  }
+  100% {
+    scale: var(--scale-to);
+  }
+}
+
+@keyframes scaling-out {
+  0% {
+    scale: var(--scale-to);
+  }
+  100% {
+    scale: var(--scale-from);
+  }
+}
+
+.hovered-icon {
+  animation: color-change-in 0.6s ease-in-out forwards;
+}
+
+.notHovered-icon {
+  animation: color-change-out 0.6s ease-in-out forwards;
+}
+
+@keyframes color-change-in {
+  0% {
+    color: var(--color-from);
+    scale: var(--children-scale-from);
+  }
+  100% {
+    color: var(--color-to);
+    scale: var(--children-scale-to);
+  }
+}
+
+@keyframes color-change-out {
+  0% {
+    color: var(--color-to);
+    scale: var(--children-scale-to);
+  }
+  100% {
+    color: var(--color-from);
+    scale: var(--children-scale-from);
+  }
+}
+
+@media (min-width: 2100px) {
+  .icon {
+    scale: var(--children-scale-from-for-big)
+  }
+  .hovered-icon {
+    animation: color-change-in-for-big 0.6s ease-in-out forwards;
+  }
+  
+  .notHovered-icon {
+    animation: color-change-out-for-big 0.6s ease-in-out forwards;
+  }
+}
+
+@keyframes color-change-in-for-big {
+  0% {
+    color: var(--color-from);
+    scale: var(--children-scale-from-for-big);
+  }
+  100% {
+    color: var(--color-to);
+    scale: var(--children-scale-to-for-big);
+  }
+}
+
+@keyframes color-change-out-for-big {
+  0% {
+    color: var(--color-to);
+    scale: var(--children-scale-to-for-big);
+  }
+  100% {
+    color: var(--color-from);
+    scale: var(--children-scale-from-for-big);
+  }
+}
+
+@media (max-width: 768px) {
+  .icon {
+    scale: var(--children-scale-from-for-small)
+  }
+  .hovered-icon {
+    animation: color-change-in-for-small 0.6s ease-in-out forwards;
+  }
+  
+  .notHovered-icon {
+    animation: color-change-out-for-small 0.6s ease-in-out forwards;
+  }
+}
+
+@keyframes color-change-in-for-small {
+  0% {
+    color: var(--color-from);
+    scale: var(--children-scale-from-for-small);
+  }
+  100% {
+    color: var(--color-to);
+    scale: var(--children-scale-to-for-small);
+  }
+}
+
+@keyframes color-change-out-for-small {
+  0% {
+    color: var(--color-to);
+    scale: var(--children-scale-to-for-small);
+  }
+  100% {
+    color: var(--color-from);
+    scale: var(--children-scale-from-for-small);
+  }
+}
