@@ -1,24 +1,27 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import { checkKey } from '../../api/adminApi'
+import { checkKey, secretKey } from '../../api/adminApi'
 import FallingDots from '../../components/fallingDots/FallingDots'
 import Loading from '../../components/Loading';
 import './login.css'
 
 const DevLogin = () => {
-  const [secretKey, setSecretKey] = useState('')
+  const [writtenKey, setWrittenKey] = useState('')
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
     try {
       setLoading(true)
-      const response = await checkKey(secretKey);
+      secretKey = writtenKey
+      const response = await checkKey();
       setLoading(false);
       if (response.status === 200) {
-        navigate('/main')
+        Cookies.set('secretKey', writtenKey, {expires: 1})
+        navigate('/admin')
       }
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -42,8 +45,8 @@ const DevLogin = () => {
           type='password' 
           placeholder='Secret Key' 
           maxLength={32}
-          value={secretKey}  
-          onChange={(e) => setSecretKey(e.target.value)}
+          value={writtenKey}  
+          onChange={(e) => setWrittenKey(e.target.value)}
           />
           <button className='login-button' onClick={() => handleSubmit()}>
             <CheckRoundedIcon className='login-check' fontSize='large'/>

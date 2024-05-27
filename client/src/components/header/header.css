@@ -85,3 +85,28 @@
       scale: 1;
     }
 }
+
+.header-button-profile {
+    width: 70px;
+    height: 45px;
+    cursor: pointer;
+    border: 0px;
+    border-radius: 50px;
+    background-color: rgba(52, 52, 52, 0.8);
+    color: white;
+    font-family: 'Lexend-light';
+    font-size: 20px;
+    margin: 12px 20px 0px 5px;
+    float: right;
+    animation: scaling-out 0.2s ease-in-out forwards;
+    user-select: none;
+}
+
+.header-button-profile:hover{
+    animation: scaling-in 0.2s ease-in-out forwards;
+}
+
+.header-profile {
+    color: white;
+    scale: 1.7;
+}

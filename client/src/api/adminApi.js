@@ -1,9 +1,11 @@
 import axios from 'axios';
 import formData from 'form-data';
+import Cookies from 'js-cookie';
 
 axios.defaults.baseURL = 'http://localhost:5299';
+export let secretKey = Cookies.get('secretKey');
 
-export async function checkKey(secretKey) {
+export async function checkKey() {
     try {
         const result = await axios({
             method: 'post',
@@ -16,7 +18,7 @@ export async function checkKey(secretKey) {
     }
 }
 
-export async function createCategory(name, imagePath, typesId, secretKey) {
+export async function createCategory(name, imagePath, typesId) {
     const form = new formData();
     form.append('Name', name);
     form.append('Image', imagePath);
@@ -37,7 +39,7 @@ export async function createCategory(name, imagePath, typesId, secretKey) {
     }
 }
 
-export async function updateCategory(id, name, imagePath, typesId, secretKey) {
+export async function updateCategory(id, name, imagePath, typesId) {
     const form = new formData();
     form.append('Id', id);
     form.append('Name', name);
@@ -59,7 +61,7 @@ export async function updateCategory(id, name, imagePath, typesId, secretKey) {
     }
 }
 
-export async function deleteCategory(id, secretKey) {
+export async function deleteCategory(id) {
     try {
         const result = await axios({
             method: 'patch',

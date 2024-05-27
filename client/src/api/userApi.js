@@ -1,11 +1,11 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 axios.defaults.baseURL = 'http://localhost:5299';
 
 export async function signIn(email, password) {
-    let result;
     try {
-        result = await axios({
+        const result = await axios({
             method: 'post',
             url: '/api/Accounts/SignIn',
             headers: {
@@ -16,6 +16,7 @@ export async function signIn(email, password) {
                 password: password
             }
         });
+        Cookies.set('token', (result.data.split(' '))[1], {expires: 1})
         return result;
     } catch (error) {
         console.error('Error fetching data:', error);
@@ -24,9 +25,8 @@ export async function signIn(email, password) {
 }
 
 export async function signUp(email, password) {
-    let result;
     try {
-        result = await axios({
+        const result = await axios({
             method: 'post',
             url: '/api/Accounts/SignUp',
             headers: {
@@ -37,6 +37,7 @@ export async function signUp(email, password) {
                 password: password
             }
         });
+        Cookies.set('token', (result.data.split(' '))[1], {expires: 1})
         return result;
     } catch (error) {
         console.error('Error fetching data:', error);
@@ -45,9 +46,8 @@ export async function signUp(email, password) {
 }
 
 export async function getUsers() {
-    let result;
     try {
-        result = await axios({
+        const result = await axios({
             method: 'get',
             url: '/api/Accounts/GetUsers'
         });
@@ -59,9 +59,8 @@ export async function getUsers() {
 }
 
 export async function getCatalog() {
-    let result;
     try {
-        result = await axios({
+        const result = await axios({
             method: 'get',
             url: '/api/Catalog/GetAll'
         });
@@ -73,9 +72,8 @@ export async function getCatalog() {
 }
 
 export async function getFrom(page, limit) {
-    let result;
     try {
-        result = await axios({
+        const result = await axios({
             method: 'get',
             url: '/api/Catalog/GetRangeFromAll',
             params: {
@@ -91,9 +89,8 @@ export async function getFrom(page, limit) {
 }
 
 export async function getByCategory(categoryId, page = null, limit = null) {
-    let result;
     try {
-        result = await axios({
+        const result = await axios({
             method: 'get',
             url: '/api/Catalog/GetByCategory',
             params: {
@@ -110,9 +107,8 @@ export async function getByCategory(categoryId, page = null, limit = null) {
 }
 
 export async function getByType(typeId, page = null, limit = null) {
-    let result;
     try {
-        result = await axios({
+        const result = await axios({
             method: 'get',
             url: '/api/Catalog/GetByType',
             params: {
@@ -129,9 +125,8 @@ export async function getByType(typeId, page = null, limit = null) {
 }
 
 export async function getById(id) {
-    let result;
     try {
-        result = await axios({
+        const result = await axios({
             method: 'get',
             url: '/api/Catalog/GetById',
             params: {
@@ -146,9 +141,8 @@ export async function getById(id) {
 }
 
 export async function getCategories() {
-    let result;
     try {
-        result = await axios({
+        const result = await axios({
             method: 'get',
             url: '/api/CTP/GetCategories'
         });
@@ -160,9 +154,8 @@ export async function getCategories() {
 }
 
 export async function getTypes() {
-    let result;
     try {
-        result = await axios({
+        const result = await axios({
             method: 'get',
             url: '/api/CTP/GetTypes'
         });
@@ -174,9 +167,8 @@ export async function getTypes() {
 }
 
 export async function getTypesByCategoryId(categoryId) {
-    let result;
     try {
-        result = await axios({
+        const result = await axios({
             method: 'get',
             url: '/api/CTP/GetTypesByCId',
             params: {
@@ -191,9 +183,8 @@ export async function getTypesByCategoryId(categoryId) {
 }
 
 export async function getParameters() {
-    let result;
     try {
-        result = await axios({
+        const result = await axios({
             method: 'get',
             url: '/api/CTP/GetParameters'
         });
@@ -205,9 +196,8 @@ export async function getParameters() {
 }
 
 export async function getTypeById(id) {
-    let result;
     try {
-        result = await axios({
+        const result = await axios({
             method: 'get',
             url: '/api/CTP/GetTypeById',
             params: {
@@ -222,9 +212,8 @@ export async function getTypeById(id) {
 }
 
 export async function getParameterById(id) {
-    let result;
     try {
-        result = await axios({
+        const result = await axios({
             method: 'get',
             url: '/api/CTP/GetParameterById',
             params: {
@@ -239,9 +228,8 @@ export async function getParameterById(id) {
 }
 
 export async function getCategoryById(id) {
-    let result;
     try {
-        result = await axios({
+        const result = await axios({
             method: 'get',
             url: '/api/CTP/GetCategoryById',
             params: {
@@ -256,9 +244,8 @@ export async function getCategoryById(id) {
 }
 
 export async function getOrders() {
-    let result;
     try {
-        result = await axios({
+        const result = await axios({
             method: 'get',
             url: '/api/Orders/GetAll',
         });
@@ -269,14 +256,13 @@ export async function getOrders() {
     }
 }
 
-export async function getUsersOrders(token) {
-    let result;
+export async function getUsersOrders() {
     try {
-        result = await axios({
+        const result = await axios({
             method: 'get',
             url: '/api/Orders/GetByUserId',
             headers: {
-                'Authorization': token
+                'Authorization': Cookies.get('token')
             }
         });
         return result;
@@ -286,32 +272,30 @@ export async function getUsersOrders(token) {
     }
 }
 
-export async function createOrder(orderId, size, token) {
-    let result;
+export async function createOrder(orderId, size) {
     try {
-        result = await axios({
+        const result = await axios({
             method: 'post',
             url: '/api/Orders/CreateOrder',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': token
+                'Authorization': Cookies.get('token')
             },
             data: {
                 id: orderId,
                 size: size
             }
         });
+        return result;
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
     }
-    return result;
 }
 
 export async function updateOrder(orderId, status) {
-    let result;
     try {
-        result = await axios({
+        const result = await axios({
             method: 'post',
             url: '/api/Orders/UpdateOrder',
             headers: {

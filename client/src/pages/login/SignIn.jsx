@@ -12,7 +12,7 @@ const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const { isLogged, setIsLogged } = useContext(AuthContext);
+  const { setIsLogged } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
