@@ -6,6 +6,7 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import { checkKey, secretKey } from '../../api/adminApi'
 import FallingDots from '../../components/fallingDots/FallingDots'
 import Loading from '../../components/Loading';
+import MyButton from '../../components/myButton/MyButton';
 import './login.css'
 
 const DevLogin = () => {
@@ -16,8 +17,7 @@ const DevLogin = () => {
   const handleSubmit = async () => {
     try {
       setLoading(true)
-      secretKey = writtenKey
-      const response = await checkKey();
+      const response = await checkKey(writtenKey);
       setLoading(false);
       if (response.status === 200) {
         Cookies.set('secretKey', writtenKey, {expires: 1})
@@ -36,9 +36,19 @@ const DevLogin = () => {
         <div className='login-field loading'>
           <div className='login-header'>
             <h1 className='login-title'>dev mode</h1>
-            <button className='login-exit-button' onClick={() => navigate('/main')}>
-              <CloseRoundedIcon className='login-cross'/>
-            </button>
+            <MyButton 
+            className='login-exit-button'
+            childrenClassName='login-cross'
+            scaleFrom={1} 
+            scaleTo={1.2}
+            childrenScaleFromForBig={2} 
+            childrenScaleToForBig={2.2} 
+            colorFrom="white" 
+            colorTo="rgb(233, 0, 0)"
+            onClick={() => navigate('/main')}
+            >
+              <CloseRoundedIcon/>
+            </MyButton>
           </div>
           <input 
           className='login-input' 
@@ -48,9 +58,21 @@ const DevLogin = () => {
           value={writtenKey}  
           onChange={(e) => setWrittenKey(e.target.value)}
           />
-          <button className='login-button' onClick={() => handleSubmit()}>
-            <CheckRoundedIcon className='login-check' fontSize='large'/>
-          </button>
+          <MyButton 
+            className='login-button'
+            childrenClassName='login-check' 
+            scaleFrom={1} 
+            scaleTo={1.2}
+            childrenScaleFrom={2} 
+            childrenScaleTo={2.2}
+            childrenScaleFromForBig={3} 
+            childrenScaleToForBig={3.2} 
+            colorFrom="white" 
+            colorTo="rgb(140, 233, 0)"
+            onClick={() => handleSubmit()}
+          >
+            <CheckRoundedIcon fontSize='large'/>
+          </MyButton>
         </div>
       </Loading>
     </div>

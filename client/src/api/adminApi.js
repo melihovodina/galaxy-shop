@@ -5,11 +5,11 @@ import Cookies from 'js-cookie';
 axios.defaults.baseURL = 'http://localhost:5299';
 export let secretKey = Cookies.get('secretKey');
 
-export async function checkKey() {
+export async function checkKey(key) {
     try {
         const result = await axios({
             method: 'post',
-            url: `/api/Admin/${secretKey}/CheckKey`,
+            url: `/api/Admin/${key}/CheckKey`,
         });
         return result;
     } catch (error) {

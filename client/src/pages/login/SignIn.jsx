@@ -7,28 +7,49 @@ import { AuthContext } from '../../components/AuthContext';
 import FallingDots from '../../components/fallingDots/FallingDots'
 import Loading from '../../components/Loading';
 import MyButton from '../../components/myButton/MyButton';
+import Window from '../../components/window/Window';
 import './login.css'
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [windowMessage, setWindowMassege] = useState('');
   const { setIsLogged } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  const elements = [
+    { type: 'h1', text: 'Error' },
+    { type: 'p', text: windowMessage },
+    { type: 'button',
+      text: 'Ok',
+      scaleFrom: 1,
+      scaleTo: 1.2,
+      onClick: () => setIsVisible(false)
+    },
+  ];
+
   const handleSubmit = async () => {
-    try {
-      setLoading(true);
-      const response = await signIn(email, password);
-      setLoading(false)
-      if (response.status === 200) {
-        setIsLogged(true)
-        navigate('/main')
+    if(email.length > 3 && password.length > 3) {
+      try {
+        setLoading(true);
+        const response = await signIn(email, password);
+        setLoading(false)
+        if (response.status === 200) {
+          setIsLogged(true)
+          navigate('/main')
+        }
+      } catch (error) {
+        setLoading(false);
+        setWindowMassege('Incorrect email or password')
+        setIsVisible(true)
+        console.error('Error fetching data:', error);
+        throw error;
       }
-    } catch (error) {
-      setLoading(false);
-      console.error('Error fetching data:', error);
-      throw error;
+    } else {
+      setWindowMassege('Email and password must contain from 3 to 32 characters')
+      setIsVisible(true);
     }
   }
 
@@ -36,6 +57,7 @@ const SignIn = () => {
     <div className='login-main'>
       <FallingDots/>
       <Loading loading={loading} loadingClass="loading">
+        <Window isVisible={isVisible} setIsVisible={setIsVisible} elements={elements}/>
         <div className='login-field loading'>
           <div className='login-header'>
             <h1 className='login-title'>Sign In</h1>

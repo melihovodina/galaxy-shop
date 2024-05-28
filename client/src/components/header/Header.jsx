@@ -49,6 +49,16 @@ const Header = () => {
                     </MyButton>
                 </>
             )}
+            <MyButton 
+                className='header-button'
+                scaleFrom={1} 
+                scaleTo={1.2}
+                childrenScaleFromForBig={2} 
+                childrenScaleToForBig={2.2} 
+                onClick={() => navigate('/devLogin')}
+            >
+                <>adminka</>
+            </MyButton>
             <div className='header-input-block'>
                 <input className='header-input' placeholder='Search'/>
             </div>
