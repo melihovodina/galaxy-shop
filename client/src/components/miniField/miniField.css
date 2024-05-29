@@ -1,0 +1,57 @@
+.mini-field-main {
+    width: 80%;
+    height: 100%;
+    float: right;
+}
+
+.mini-field-list {
+    width: 100%;
+    height: 90%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.mini-field-list-block {
+    width: 100%;
+    height: 200px;
+    border-radius: 20px;
+    background-color: white;
+    color: black;
+    font-family: 'Lexend-light';
+    font-size: 20px;
+    margin: 0px 0px 0px 20px;
+    padding: 10px;
+}
+
+.mini-field-list-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.mini-field-list-text {
+    margin: 0px 10px 10px 0px;
+}
+
+.mini-field-list-image {
+    width: 150px;
+    height: auto;
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
+
+.mini-field-buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.mini-field-button {
+    width: 150px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: white;
+    color: black;
+    font-family: 'Lexend-light';
+    font-size: 20px;
+    margin: 10px 0px 0px 20px;
+}

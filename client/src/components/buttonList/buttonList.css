@@ -1,16 +1,29 @@
 .button-list-main {
-    width: 300px;
+    width: 225px;
     height: 80%;
-
 }
 
 .button-list-element {
-    width: 200px;
-    height: 45px;
+    width: 175px;
+    height: 40px;
     border-radius: 20px;
     background-color: white;
     color: black;
     font-family: 'Lexend-light';
     font-size: 20px;
-    margin: 0px 0px 15px 20px;
+    margin: 0px 0px 10px 20px;
+}
+
+@media (min-width: 2100px) {
+    .button-list-main{
+        width: 400px;
+    }
+
+    .button-list-element {
+        width: 350px;
+        height: 70px;
+        border-radius: 40px;
+        font-size: 40px;
+        margin: 0px 0px 15px 20px;
+    }
 }

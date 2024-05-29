@@ -4,6 +4,7 @@
     background-color: black;
     position: absolute;
     color: white;
+    overflow: hidden;
 }
 
 .admin-field {
@@ -19,7 +20,7 @@
 
 .admin-exit-button {
     width: 60px;
-    height: 45px;
+    height: 40px;
     border-radius: 20px;
     background-color: white;
     color: black;
@@ -32,5 +33,26 @@
 .admin-title {
     margin: 0;
     padding: 15px 0px 0px 0px;
-    font-size: 35px;
+    font-size: 40px;
+}
+
+.admin-work-zone {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+}
+
+@media (min-width: 2100px) {
+    .admin-title {
+        font-size: 70px;
+    }
+
+    .admin-exit-button {
+        width: 100px;
+        height: 70px;
+        border-radius: 35px;
+        font-size:35px;
+        margin: -80px 20px 0px 0px;
+    }
 }

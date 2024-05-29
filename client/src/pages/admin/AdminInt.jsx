@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import * as adminApi from '../../api/adminApi'
 import MyButton from '../../components/myButton/MyButton';
 import ButtonList from '../../components/buttonList/ButtonList';
 import './adminInt.css'
+import MiniField from '../../components/miniField/MiniField';
 
 const AdminInt = () => {
+  const [list, setList] = useState('')
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,11 +29,11 @@ const AdminInt = () => {
   }
 
   const buttons = [
-    {onClick: async () => navigate('/main'), text: 'Categories'},
-    {onClick: async () => navigate('/main'), text: 'Parametres'},
-    {onClick: async () => navigate('/main'), text: 'Types'},
-    {onClick: async () => navigate('/main'), text: 'Products'},
-    {onClick: async () => navigate('/main'), text: 'Orders'},
+    {text: 'Categories'},
+    {text: 'Parametres'},
+    {text: 'Types'},
+    {text: 'Products'},
+    {text: 'Orders'},
   ];
 
   return (
@@ -49,7 +50,10 @@ const AdminInt = () => {
             <>Exit</>
           </MyButton>
         </div>
-        <ButtonList buttons={buttons}/>
+        <div className='admin-work-zone'>
+          <ButtonList buttons={buttons} setList={setList}/>
+          <MiniField list={list}/>
+        </div> 
       </div>
     </div>
   );

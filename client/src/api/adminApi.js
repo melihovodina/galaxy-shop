@@ -3,7 +3,6 @@ import formData from 'form-data';
 import Cookies from 'js-cookie';
 
 axios.defaults.baseURL = 'http://localhost:5299';
-export let secretKey = Cookies.get('secretKey');
 
 export async function checkKey(key) {
     try {
@@ -26,7 +25,7 @@ export async function createCategory(name, imagePath, typesId) {
     try {
         const result = await axios({
             method: 'put',
-            url: `/api/Admin/${secretKey}/CreateCategory`,
+            url: `/api/Admin/${Cookies.get('secretKey')}/CreateCategory`,
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
@@ -48,7 +47,7 @@ export async function updateCategory(id, name, imagePath, typesId) {
     try {
         const result = await axios({
             method: 'patch',
-            url: `/api/Admin/${secretKey}/UpdateCategory`,
+            url: `/api/Admin/${Cookies.get('secretKey')}/UpdateCategory`,
             headers: {
             'Content-Type': 'multipart/form-data',
             },
@@ -64,8 +63,8 @@ export async function updateCategory(id, name, imagePath, typesId) {
 export async function deleteCategory(id) {
     try {
         const result = await axios({
-            method: 'patch',
-            url: `/api/Admin/${secretKey}/UpdateCategory`,
+            method: 'delete',
+            url: `/api/Admin/${Cookies.get('secretKey')}/UpdateCategory`,
             headers: {
             'Content-Type': 'application/json',
             },
@@ -80,11 +79,11 @@ export async function deleteCategory(id) {
     }
 }
 
-export async function createParameter(name, allowValues, typesId, secretKey) {
+export async function createParameter(name, allowValues, typesId) {
     try {
         const result = await axios({
             method: 'put',
-            url: `/api/Admin/${secretKey}/CreateParameter`,
+            url: `/api/Admin/${Cookies.get('secretKey')}/CreateParameter`,
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -101,11 +100,11 @@ export async function createParameter(name, allowValues, typesId, secretKey) {
     }
 }
 
-export async function updateParameter(id, name, allowValues, typesId, secretKey) {
+export async function updateParameter(id, name, allowValues, typesId) {
     try {
         const result = await axios({
             method: 'patch',
-            url: `/api/Admin/${secretKey}/CreateParameter`,
+            url: `/api/Admin/${Cookies.get('secretKey')}/CreateParameter`,
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -123,11 +122,11 @@ export async function updateParameter(id, name, allowValues, typesId, secretKey)
     }
 }
 
-export async function deleteParameter(id, secretKey) {
+export async function deleteParameter(id) {
     try {
         const result = await axios({
-            method: 'patch',
-            url: `/api/Admin/${secretKey}/UpdateCategory`,
+            method: 'delete',
+            url: `/api/Admin/${Cookies.get('secretKey')}/UpdateCategory`,
             headers: {
             'Content-Type': 'application/json',
             },
@@ -142,11 +141,11 @@ export async function deleteParameter(id, secretKey) {
     }
 }
 
-export async function createType(parrentId = null, name, parameterId, categoryId, allowValues, typesId, secretKey) {
+export async function createType(parrentId = null, name, parameterId, categoryId, allowValues, typesId) {
     try {
         const result = await axios({
             method: 'put',
-            url: `/api/Admin/${secretKey}/CreateType`,
+            url: `/api/Admin/${Cookies.get('secretKey')}/CreateType`,
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -166,11 +165,11 @@ export async function createType(parrentId = null, name, parameterId, categoryId
     }
 }
 
-export async function updateType(id, parrentId = null, name, parameterId, categoryId, allowValues, typesId, secretKey) {
+export async function updateType(id, parrentId = null, name, parameterId, categoryId, allowValues, typesId) {
     try {
         const result = await axios({
             method: 'patch',
-            url: `/api/Admin/${secretKey}/CreateType`,
+            url: `/api/Admin/${Cookies.get('secretKey')}/CreateType`,
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -191,11 +190,11 @@ export async function updateType(id, parrentId = null, name, parameterId, catego
     }
 }
 
-export async function deleteType(id, secretKey) {
+export async function deleteType(id) {
     try {
         const result = await axios({
-            method: 'patch',
-            url: `/api/Admin/${secretKey}/UpdateCategory`,
+            method: 'delete',
+            url: `/api/Admin/${Cookies.get('secretKey')}/UpdateCategory`,
             headers: {
             'Content-Type': 'application/json',
             },
@@ -210,7 +209,7 @@ export async function deleteType(id, secretKey) {
     }
 }
 
-export async function createProduct(name, description, price, discount, num, imagesPath, imagesLinks = null, typesId, paramValues, secretKey) {
+export async function createProduct(name, description, price, discount, num, imagesPath, imagesLinks = null, typesId, paramValues) {
     const form = new formData();
     form.append('Name', name);
     form.append('Description', description);
@@ -224,7 +223,7 @@ export async function createProduct(name, description, price, discount, num, ima
     try {
         const result = await axios({
             method: 'post',
-            url: `/api/Admin/${secretKey}/CreateProduct`,
+            url: `/api/Admin/${Cookies.get('secretKey')}/CreateProduct`,
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
@@ -237,7 +236,7 @@ export async function createProduct(name, description, price, discount, num, ima
     }
 }
 
-export async function updateProduct(id, name, description, price, discount, num, imagesPath, imagesLinks = null, typesId, paramValues, secretKey) {
+export async function updateProduct(id, name, description, price, discount, num, imagesPath, imagesLinks = null, typesId, paramValues) {
     const form = new formData();
     form.append('Id', id);
     form.append('Name', name);
@@ -252,7 +251,7 @@ export async function updateProduct(id, name, description, price, discount, num,
     try {
         const result = await axios({
             method: 'post',
-            url: `/api/Admin/${secretKey}/UpdateProduct`,
+            url: `/api/Admin/${Cookies.get('secretKey')}/UpdateProduct`,
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
@@ -265,13 +264,21 @@ export async function updateProduct(id, name, description, price, discount, num,
     }
 }
 
-export async function deleteProduct() {
-    let result;
+export async function deleteProduct(id) {
     try {
-        
+        const result = await axios({
+            method: 'delete',
+            url: `/api/Admin/${Cookies.get('secretKey')}/DeleteProduct`,
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            data: {
+                id:id
+            }
+        });
+        return result;
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
     }
-    return result;
 }

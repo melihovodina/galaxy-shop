@@ -64,7 +64,7 @@ export async function getCatalog() {
             method: 'get',
             url: '/api/Catalog/GetAll'
         });
-        return result;
+        return result.data;
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
