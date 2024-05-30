@@ -11,18 +11,20 @@ const MiniFieldListItem = ({ element }) => {
         </div>
       )}
       {element.imageLink && (
-        <div className='mini-field-list-row'>
+        <div className='mini-field-list-image-row'>
           <p className='mini-field-list-text'>Image:</p>
           <img className="mini-field-list-image" src={element.imageLink} alt={element.name} />
         </div>
       )}
       {element.imageLinks && element.imageLinks.length > 0 && (
-        <div className='mini-field-list-row'>
+        <div className='mini-field-list-image-row'>
           <p className='mini-field-list-text'>Images:</p>
-          <img className="mini-field-list-image" src={element.Images.join(', ')} alt={element.name}/>
+          {element.imageLinks.map ((image) => (
+            <img className="mini-field-list-image" src={image} alt={element.name}/>
+          ))}
         </div>
       )}
-      {element.description && (
+      {element.description &&(
         <div className='mini-field-list-row'>
           <p className='mini-field-list-text'>Description:</p>
           <p className="mini-field-list-text">{element.description}</p>
@@ -34,7 +36,7 @@ const MiniFieldListItem = ({ element }) => {
           <p className="mini-field-list-text">{element.price}</p>
         </div>
       )}
-      {element.discount && (
+      {element.discount !== undefined && (
         <div className='mini-field-list-row'>
           <p className='mini-field-list-text'>Discount:</p>
           <p className="mini-field-list-text">{element.discount}</p>

@@ -5,11 +5,11 @@ import './buttonList.css'
 const ButtonList = ({ buttons, setList }) => {
   const handleClick = (buttonText) => {
     const listValues = {
-      Categories: 'Categories',
-      Parametres: 'Parametres',
-      Types: 'Types',
-      Products: 'Products',
-      Orders: 'Orders',
+      Categories: 'categories',
+      Parametres: 'parametres',
+      Types: 'types',
+      Products: 'products',
+      Orders: 'orders',
     };
     setList(listValues[buttonText]);
   };

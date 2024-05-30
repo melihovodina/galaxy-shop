@@ -5,7 +5,7 @@ axios.defaults.baseURL = 'http://localhost:5299';
 
 export async function signIn(email, password) {
     try {
-        const result = await axios({
+        const response = await axios({
             method: 'post',
             url: '/api/Accounts/SignIn',
             headers: {
@@ -16,8 +16,8 @@ export async function signIn(email, password) {
                 password: password
             }
         });
-        Cookies.set('token', (result.data.split(' '))[1], {expires: 1})
-        return result;
+        Cookies.set('token', (response.data.split(' '))[1], {expires: 1})
+        return response;
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
@@ -26,7 +26,7 @@ export async function signIn(email, password) {
 
 export async function signUp(email, password) {
     try {
-        const result = await axios({
+        const response = await axios({
             method: 'post',
             url: '/api/Accounts/SignUp',
             headers: {
@@ -37,8 +37,8 @@ export async function signUp(email, password) {
                 password: password
             }
         });
-        Cookies.set('token', (result.data.split(' '))[1], {expires: 1})
-        return result;
+        Cookies.set('token', (response.data.split(' '))[1], {expires: 1})
+        return response;
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
@@ -47,11 +47,11 @@ export async function signUp(email, password) {
 
 export async function getUsers() {
     try {
-        const result = await axios({
+        const response = await axios({
             method: 'get',
             url: '/api/Accounts/GetUsers'
         });
-        return result;
+        return response;
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
@@ -60,11 +60,11 @@ export async function getUsers() {
 
 export async function getCatalog() {
     try {
-        const result = await axios({
+        const response = await axios({
             method: 'get',
             url: '/api/Catalog/GetAll'
         });
-        return result.data;
+        return response;
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
@@ -73,7 +73,7 @@ export async function getCatalog() {
 
 export async function getFrom(page, limit) {
     try {
-        const result = await axios({
+        const response = await axios({
             method: 'get',
             url: '/api/Catalog/GetRangeFromAll',
             params: {
@@ -81,7 +81,7 @@ export async function getFrom(page, limit) {
                 Limit: limit
             }
         });
-        return result;
+        return response;
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
@@ -90,7 +90,7 @@ export async function getFrom(page, limit) {
 
 export async function getByCategory(categoryId, page = null, limit = null) {
     try {
-        const result = await axios({
+        const response = await axios({
             method: 'get',
             url: '/api/Catalog/GetByCategory',
             params: {
@@ -99,7 +99,7 @@ export async function getByCategory(categoryId, page = null, limit = null) {
                 'Range.Limit':limit
             }
         });
-        return result;
+        return response;
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
@@ -108,7 +108,7 @@ export async function getByCategory(categoryId, page = null, limit = null) {
 
 export async function getByType(typeId, page = null, limit = null) {
     try {
-        const result = await axios({
+        const response = await axios({
             method: 'get',
             url: '/api/Catalog/GetByType',
             params: {
@@ -117,7 +117,7 @@ export async function getByType(typeId, page = null, limit = null) {
                 'Range.Limit': limit
             }
         });
-        return result;
+        return response;
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
@@ -126,14 +126,14 @@ export async function getByType(typeId, page = null, limit = null) {
 
 export async function getById(id) {
     try {
-        const result = await axios({
+        const response = await axios({
             method: 'get',
             url: '/api/Catalog/GetById',
             params: {
                 id: id
             }
         });
-        return result;
+        return response;
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
@@ -142,11 +142,11 @@ export async function getById(id) {
 
 export async function getCategories() {
     try {
-        const result = await axios({
+        const response = await axios({
             method: 'get',
             url: '/api/CTP/GetCategories'
         });
-        return result;
+        return response;
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
@@ -155,11 +155,11 @@ export async function getCategories() {
 
 export async function getTypes() {
     try {
-        const result = await axios({
+        const response = await axios({
             method: 'get',
             url: '/api/CTP/GetTypes'
         });
-        return result;
+        return response;
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
@@ -168,14 +168,14 @@ export async function getTypes() {
 
 export async function getTypesByCategoryId(categoryId) {
     try {
-        const result = await axios({
+        const response = await axios({
             method: 'get',
             url: '/api/CTP/GetTypesByCId',
             params: {
                 id: categoryId
             }
         });
-        return result;
+        return response;
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
@@ -184,11 +184,11 @@ export async function getTypesByCategoryId(categoryId) {
 
 export async function getParameters() {
     try {
-        const result = await axios({
+        const response = await axios({
             method: 'get',
             url: '/api/CTP/GetParameters'
         });
-        return result;
+        return response;
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
@@ -197,14 +197,14 @@ export async function getParameters() {
 
 export async function getTypeById(id) {
     try {
-        const result = await axios({
+        const response = await axios({
             method: 'get',
             url: '/api/CTP/GetTypeById',
             params: {
                 id: id
             }
         });
-        return result;
+        return response;
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
@@ -213,14 +213,14 @@ export async function getTypeById(id) {
 
 export async function getParameterById(id) {
     try {
-        const result = await axios({
+        const response = await axios({
             method: 'get',
             url: '/api/CTP/GetParameterById',
             params: {
                 id: id
             }
         });
-        return result;
+        return response;
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
@@ -229,14 +229,14 @@ export async function getParameterById(id) {
 
 export async function getCategoryById(id) {
     try {
-        const result = await axios({
+        const response = await axios({
             method: 'get',
             url: '/api/CTP/GetCategoryById',
             params: {
                 id: id
             }
         });
-        return result;
+        return response;
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
@@ -245,11 +245,11 @@ export async function getCategoryById(id) {
 
 export async function getOrders() {
     try {
-        const result = await axios({
+        const response = await axios({
             method: 'get',
             url: '/api/Orders/GetAll',
         });
-        return result;
+        return response;
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
@@ -258,14 +258,14 @@ export async function getOrders() {
 
 export async function getUsersOrders() {
     try {
-        const result = await axios({
+        const response = await axios({
             method: 'get',
             url: '/api/Orders/GetByUserId',
             headers: {
                 'Authorization': Cookies.get('token')
             }
         });
-        return result;
+        return response;
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
@@ -274,7 +274,7 @@ export async function getUsersOrders() {
 
 export async function createOrder(orderId, size) {
     try {
-        const result = await axios({
+        const response = await axios({
             method: 'post',
             url: '/api/Orders/CreateOrder',
             headers: {
@@ -286,7 +286,7 @@ export async function createOrder(orderId, size) {
                 size: size
             }
         });
-        return result;
+        return response;
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
@@ -295,7 +295,7 @@ export async function createOrder(orderId, size) {
 
 export async function updateOrder(orderId, status) {
     try {
-        const result = await axios({
+        const response = await axios({
             method: 'post',
             url: '/api/Orders/UpdateOrder',
             headers: {
@@ -306,7 +306,7 @@ export async function updateOrder(orderId, status) {
                 status: status
             }
         });
-        return result;
+        return response;
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;

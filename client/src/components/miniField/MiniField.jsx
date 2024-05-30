@@ -4,37 +4,39 @@ import Loading from '../Loading'
 import MyButton from '../myButton/MyButton'
 import MiniFieldListItem from './MiniFieldItem'
 import './miniField.css'
+import MiniFieldRedact from './MiniFieldRedact'
 
 const MiniField = ({ list }) => {
     const [info, setInfo] = useState([])
     const [loading, setLoading] = useState(false);
+    const [windowDisplay, setWindowDisplay] = useState('list');
 
     useEffect(() => {
         getList()
-        console.log(info)
     },[list])
 
     const getList = async () => {
         setLoading(true);
+        setWindowDisplay('List');
         let result
         switch (list) {
-            case "Categories":
+            case "categories":
                 result = await userApi.getCategories();
                 setInfo(result)
                 break;
-            case 'Parametres':
+            case 'parametres':
                 result = await userApi.getParameters();
                 setInfo(result)
                 break;
-            case 'Types':
+            case 'types':
                 result = await userApi.getTypes();
                 setInfo(result)
                 break;
-            case 'Products':
+            case 'products':
                 result = await userApi.getCatalog();
                 setInfo(result)
                 break;
-            case 'Orders':
+            case 'orders':
                 result = await userApi.getOrders();
                 setInfo(result)
                 break;
@@ -51,9 +53,13 @@ const MiniField = ({ list }) => {
             <div className='mini-field-list'>
             <Loading loading={loading} loadingClass="loading">
                 <div className='mini-field-list loading'>
-                {Array.isArray(info.data) && info.data.map((element) => (
-                    <MiniFieldListItem key={element.id} element={element} />
-                ))}
+                    {windowDisplay === 'List'? (
+                        Array.isArray(info.data) && info.data.map((element) => (
+                            <MiniFieldListItem key={element.id} element={element} />
+                        ))
+                    ) : (
+                        <MiniFieldRedact windowDisplay={windowDisplay} list={list}/>
+                    )}
                 </div>
             </Loading>
             </div>
@@ -62,7 +68,7 @@ const MiniField = ({ list }) => {
                     className='mini-field-button'
                     scaleFrom={1} 
                     scaleTo={1.2}
-                    onClick
+                    onClick={()=>setWindowDisplay('Create')}
                 >
                     <>Create</>
                 </MyButton>
@@ -70,7 +76,7 @@ const MiniField = ({ list }) => {
                     className='mini-field-button'
                     scaleFrom={1} 
                     scaleTo={1.2}
-                    onClick
+                    onClick={()=>setWindowDisplay('Update')}
                 >
                     <>Update</>
                 </MyButton>
@@ -78,7 +84,7 @@ const MiniField = ({ list }) => {
                     className='mini-field-button'
                     scaleFrom={1} 
                     scaleTo={1.2}
-                    onClick
+                    onClick={()=>setWindowDisplay('Delete')}
                 >
                     <>Delete</>
                 </MyButton>
