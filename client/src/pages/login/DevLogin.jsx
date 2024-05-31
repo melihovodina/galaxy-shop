@@ -14,7 +14,7 @@ const DevLogin = () => {
   const [writtenKey, setWrittenKey] = useState('')
   const [loading, setLoading] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [windowMessage, setWindowMassege] = useState('');
+  const [windowMessage, setWindowMessage] = useState('');
   const navigate = useNavigate();
 
   const elements = [
@@ -38,7 +38,7 @@ const DevLogin = () => {
         navigate('/admin')
       }
     } catch (error) {
-      setWindowMassege('Incorrect email or password')
+      setWindowMessage('Incorrect secret key')
       setLoading(false);
       setIsVisible(true)
       console.error('Error fetching data:', error);

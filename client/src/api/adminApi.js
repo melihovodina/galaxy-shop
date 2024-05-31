@@ -19,15 +19,24 @@ export async function checkKey(key) {
 
 export async function createCategory(name, imagePath, typesId) {
     const form = new formData();
-    form.append('Name', name);
-    form.append('Image', imagePath);
-    form.append('TypesId', JSON.stringify(typesId));    
+    if(name.length > 0) {
+        form.append('Name', name);
+    }
+    if(imagePath.length !== null) {
+        form.append('Image', imagePath);
+    }
+    if(typesId.length > 0) {
+        typesId.forEach((id, index) => {
+            form.append(`TypesId[${index}]`, id);
+        });
+    }
+    console.log([...form.entries()])
     try {
         const result = await axios({
             method: 'put',
             url: `/api/Admin/${Cookies.get('secretKey')}/CreateCategory`,
             headers: {
-                'Content-Type': 'multipart/form-data',
+                'Content-Type': 'ultipart/form-data',
             },
             data: form
         });
@@ -40,10 +49,18 @@ export async function createCategory(name, imagePath, typesId) {
 
 export async function updateCategory(id, name, imagePath, typesId) {
     const form = new formData();
-    form.append('Id', id);
-    form.append('Name', name);
-    form.append('Image', imagePath);
-    form.append('TypesId', JSON.stringify(typesId));    
+    if(id.length > 0) {
+        form.append('Id', id);
+    }
+    if(name.length > 0) {
+        form.append('Name', name);
+    }
+    if(imagePath.length !== null) {
+        form.append('Image', imagePath);
+    }
+    if(typesId.length > 0) {
+        form.append('TypesId', JSON.stringify(typesId));
+    }     
     try {
         const result = await axios({
             method: 'patch',
@@ -64,13 +81,11 @@ export async function deleteCategory(id) {
     try {
         const result = await axios({
             method: 'delete',
-            url: `/api/Admin/${Cookies.get('secretKey')}/UpdateCategory`,
+            url: `/api/Admin/${Cookies.get('secretKey')}/DeleteCategory`,
             headers: {
             'Content-Type': 'application/json',
             },
-            data: {
-                id:id
-            }
+            data: id
         });
         return result;
     } catch (error) {
@@ -209,17 +224,37 @@ export async function deleteType(id) {
     }
 }
 
-export async function createProduct(name, description, price, discount, num, imagesPath, imagesLinks = null, typesId, paramValues) {
+export async function createProduct(name, description, price, discount, num, imagesPath, imagesLinks, typeId, paramValues) {
     const form = new formData();
-    form.append('Name', name);
-    form.append('Description', description);
-    form.append('Price', price);
-    form.append('Discount', discount);
-    form.append("Number", num);
-    form.append('Images', imagesPath);
-    form.append("ImagesLinks", imagesLinks)
-    form.append('TypesId', JSON.stringify(typesId));
-    form.append('ParamValues', paramValues)    
+    if(name.length > 0) {
+        form.append('Name', name);
+    }
+    if(description.length > 0) {
+        form.append('Description', description);
+    }
+    if(typeId.length > 0) {
+        form.append('TypeId', typeId);
+    }
+    if(price.length > 0) {
+        form.append('Price', price);
+    } 
+    if(discount.length > 0) {
+        form.append('Discount', discount);
+    } 
+    if(num.length > 0) {
+        form.append("Number", num);
+    } 
+    if(imagesPath.length > 0) {
+        form.append('Images', imagesPath);
+    } 
+    if(imagesLinks!== null && imagesLinks.length > 0) {
+        form.append("ImageLinks", imagesLinks)
+    } 
+    if(paramValues.length > 0) {
+        paramValues.forEach((param, index) => {
+            form.append(`TypesId[${index}]`, param);
+        });
+    }   
     try {
         const result = await axios({
             method: 'post',

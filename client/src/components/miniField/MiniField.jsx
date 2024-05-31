@@ -21,28 +21,52 @@ const MiniField = ({ list }) => {
         let result
         switch (list) {
             case "categories":
-                result = await userApi.getCategories();
-                setInfo(result)
+                try {
+                    result = await userApi.getCategories();
+                    setInfo(result)
+                } catch (error) {
+                    console.log(error)
+                }
                 break;
             case 'parametres':
-                result = await userApi.getParameters();
-                setInfo(result)
+                try {
+                    result = await userApi.getParameters();
+                    setInfo(result)
+                } catch (error) {
+                    console.log(error)
+                }
                 break;
             case 'types':
-                result = await userApi.getTypes();
-                setInfo(result)
+                try {
+                    result = await userApi.getTypes();
+                    setInfo(result)
+                } catch (error) {
+                    console.log(error)
+                }
                 break;
             case 'products':
-                result = await userApi.getCatalog();
-                setInfo(result)
+                try {
+                    result = await userApi.getCatalog();
+                    setInfo(result)
+                } catch (error) {
+                    console.log(error)
+                }
                 break;
             case 'orders':
-                result = await userApi.getOrders();
-                setInfo(result)
+                try {
+                    result = await userApi.getOrders();
+                    setInfo(result)
+                } catch (error) {
+                    console.log(error)
+                }
                 break;
             default:
-                result = await userApi.getCategories();
-                setInfo(result)
+                try {
+                    result = await userApi.getCategories();
+                    setInfo(result)
+                } catch (error) {
+                    console.log(error)
+                }
                 break;
         }
         setLoading(false);

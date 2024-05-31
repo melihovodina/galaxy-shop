@@ -9,6 +9,19 @@ import MiniField from '../../components/miniField/MiniField';
 const AdminInt = () => {
   const [list, setList] = useState('')
   const navigate = useNavigate();
+  const [isVisible, setIsVisible] = useState(false);
+  const [windowMessage, setWindowMessage] = useState('');
+
+  const elements = [
+      { type: 'h1', text: 'Error' },
+      { type: 'p', text: windowMessage },
+      { type: 'button',
+        text: 'Ok',
+        scaleFrom: 1,
+        scaleTo: 1.2,
+        onClick: () => setIsVisible(false)
+      },
+    ];
 
   useEffect(() => {
     if (!Cookies.get('secretKey')) {
@@ -39,6 +52,7 @@ const AdminInt = () => {
   return (
     <div className='admin-main'>
       <div className='admin-field'>
+      <Window isVisible={isVisible} setIsVisible={setIsVisible} elements={elements}/>
         <div className='admin-header'>
           <h1 className='admin-title'>Admin Interface</h1>
           <MyButton 

@@ -15,7 +15,7 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [windowMessage, setWindowMassege] = useState('');
+  const [windowMessage, setWindowMessage] = useState('');
   const { setIsLogged } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -42,13 +42,13 @@ const SignUp = () => {
         }
       } catch (error) {
         setLoading(false);
-        setWindowMassege('Something gone wrong, try later')
+        setWindowMessage('Something gone wrong, try later')
         setIsVisible(true)
         console.error('Error fetching data:', error);
         throw error;
       }
     } else {
-      setWindowMassege('Email and password must contain from 3 to 32 characters')
+      setWindowMessage('Email and password must contain from 3 to 32 characters')
       setIsVisible(true);
     }
   }

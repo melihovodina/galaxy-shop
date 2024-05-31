@@ -15,7 +15,7 @@ const SignIn = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [windowMessage, setWindowMassege] = useState('');
+  const [windowMessage, setWindowMessage] = useState('');
   const { setIsLogged } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -35,20 +35,20 @@ const SignIn = () => {
       try {
         setLoading(true);
         const response = await signIn(email, password);
-        setLoading(false)
         if (response.status === 200) {
+          setLoading(false)
           setIsLogged(true)
           navigate('/main')
         }
       } catch (error) {
         setLoading(false);
-        setWindowMassege('Incorrect email or password')
+        setWindowMessage('Incorrect email or password')
         setIsVisible(true)
         console.error('Error fetching data:', error);
         throw error;
       }
     } else {
-      setWindowMassege('Email and password must contain from 3 to 32 characters')
+      setWindowMessage('Email and password must contain from 3 to 32 characters')
       setIsVisible(true);
     }
   }

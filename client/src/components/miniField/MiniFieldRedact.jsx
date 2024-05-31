@@ -1,54 +1,24 @@
 import React, { useState, useEffect } from 'react'
+import Categories from './MiniFieldRedactInputs/Categories'
+import './miniField.css'
+import Products from './MiniFieldRedactInputs/Products';
 
 const MiniFieldRedact = ({ windowDisplay, list }) => {
   const [content, setContent] = useState(null);
 
   useEffect(() => {
+    console.log(windowDisplay);
     displayContent();
   }, [windowDisplay, list]);
 
   const displayContent = () => {
-    switch (windowDisplay) {
-      case 'Create':
         setContent(
           <div>
-            {list === 'categories' &&
-                <>
-                    <div className='mini-field-list-row'>
-                        <p className='mini-field-list-text' style={{fontSize: 30}}>Name:</p> 
-                        <input className='mini-field-list-redact-input' placeholder='Empty'/>
-                    </div>
-                    <div className='mini-field-list-row'>
-                        <p className='mini-field-list-text' style={{fontSize: 30}}>Types id:</p> 
-                        <input className='mini-field-list-redact-input' placeholder=''/>
-                    </div> 
-                </>
-            }
-            {list === 'products' && <input />}
-            {list === 'types' && <input />}
+            {list === 'categories' && <Categories windowDisplay={windowDisplay}/>}
+            {list === 'products' && <Products />}
           </div>
-        );
-        break;
-      case 'Update':
-        setContent(
-          <div>
-            {list === 'categories' && <input />}
-            {list === 'products' && <input />}
-            {list === 'types' && <input />}
-          </div>
-        );
-        break;
-      case 'Delete':
-        setContent(
-          <div>
-            {list === 'categories' && <input />}
-            {list === 'products' && <input />}
-            {list === 'types' && <input />}
-          </div>
-        );
-        break;
+        )
     }
-  };
 
   return (
     <div className='mini-field-list-redact'>
