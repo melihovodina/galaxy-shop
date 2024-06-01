@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import Categories from './MiniFieldRedactInputs/Categories'
-import './miniField.css'
 import Products from './MiniFieldRedactInputs/Products';
+import Parameters from './MiniFieldRedactInputs/Parameters';
+import Types from './MiniFieldRedactInputs/Types'
+import './miniField.css'
 
 const MiniFieldRedact = ({ windowDisplay, list }) => {
   const [content, setContent] = useState(null);
@@ -15,7 +17,9 @@ const MiniFieldRedact = ({ windowDisplay, list }) => {
         setContent(
           <div>
             {list === 'categories' && <Categories windowDisplay={windowDisplay}/>}
-            {list === 'products' && <Products />}
+            {list === 'products' && <Products windowDisplay={windowDisplay}/>}
+            {list === 'parameters' && <Parameters windowDisplay={windowDisplay}/>}
+            {list === 'types' && <Types windowDisplay={windowDisplay}/>}
           </div>
         )
     }

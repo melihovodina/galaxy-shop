@@ -28,7 +28,7 @@ const MiniField = ({ list }) => {
                     console.log(error)
                 }
                 break;
-            case 'parametres':
+            case 'parameters':
                 try {
                     result = await userApi.getParameters();
                     setInfo(result)
@@ -87,32 +87,34 @@ const MiniField = ({ list }) => {
                 </div>
             </Loading>
             </div>
-            <div className='mini-field-buttons'>
-                <MyButton 
-                    className='mini-field-button'
-                    scaleFrom={1} 
-                    scaleTo={1.2}
-                    onClick={()=>setWindowDisplay('Create')}
-                >
-                    <>Create</>
-                </MyButton>
-                <MyButton 
-                    className='mini-field-button'
-                    scaleFrom={1} 
-                    scaleTo={1.2}
-                    onClick={()=>setWindowDisplay('Update')}
-                >
-                    <>Update</>
-                </MyButton>
-                <MyButton 
-                    className='mini-field-button'
-                    scaleFrom={1} 
-                    scaleTo={1.2}
-                    onClick={()=>setWindowDisplay('Delete')}
-                >
-                    <>Delete</>
-                </MyButton>
-            </div>
+            {list !== 'orders' &&
+                <div className='mini-field-buttons'>
+                    <MyButton 
+                        className='mini-field-button'
+                        scaleFrom={1} 
+                        scaleTo={1.2}
+                        onClick={()=>setWindowDisplay('Create')}
+                    >
+                        <>Create</>
+                    </MyButton>
+                    <MyButton 
+                        className='mini-field-button'
+                        scaleFrom={1} 
+                        scaleTo={1.2}
+                        onClick={()=>setWindowDisplay('Update')}
+                    >
+                        <>Update</>
+                    </MyButton>
+                    <MyButton 
+                        className='mini-field-button'
+                        scaleFrom={1} 
+                        scaleTo={1.2}
+                        onClick={()=>setWindowDisplay('Delete')}
+                    >
+                        <>Delete</>
+                    </MyButton>
+                </div>
+            }
         </div>
     )
 }

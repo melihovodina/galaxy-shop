@@ -1,12 +1,12 @@
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
-import { AuthContext } from '../AuthContext';
+import { AppContext } from '../AppContext';
 import MyButton from '../myButton/MyButton'
 import './header.css'
 
 const Header = () => {
-    const { isLogged } = useContext(AuthContext);
+    const { isLogged } = useContext(AppContext);
     const navigate = useNavigate();
 
     return (

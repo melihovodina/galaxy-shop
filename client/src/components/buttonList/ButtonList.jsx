@@ -6,7 +6,7 @@ const ButtonList = ({ buttons, setList }) => {
   const handleClick = (buttonText) => {
     const listValues = {
       Categories: 'categories',
-      Parametres: 'parametres',
+      Parameters: 'parameters',
       Types: 'types',
       Products: 'products',
       Orders: 'orders',

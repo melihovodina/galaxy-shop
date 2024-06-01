@@ -1,18 +1,18 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { AuthProvider } from './components/AuthContext';
+import { AppProvider } from './components/AppContext';
 import AppRouter from './router/AppRouter';
 import './index.css';
 
 const App = () => {
   return (
-    <AuthProvider>
+    <AppProvider>
       <BrowserRouter>
         <div className='App'>
           <AppRouter />
         </div>
       </BrowserRouter>
-    </AuthProvider>
+    </AppProvider>
   );
 };
 

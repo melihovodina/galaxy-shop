@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../AppContext';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import MyButton from '../myButton/MyButton';
 import './window.css'
 
-const Window = ({ isVisible, setIsVisible, elements }) => {
-  if (!isVisible) return null;
+const Window = () => {
+  const { isVisible, setIsVisible, elements } = useContext(AppContext);
+
+  if(!isVisible) return null;
 
   const handleHideWindow = () => {
     setIsVisible(false);

@@ -1,27 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import Window from '../../components/window/Window';
 import MyButton from '../../components/myButton/MyButton';
 import ButtonList from '../../components/buttonList/ButtonList';
-import './adminInt.css'
 import MiniField from '../../components/miniField/MiniField';
+import './adminInt.css'
+
 
 const AdminInt = () => {
-  const [list, setList] = useState('')
+  const [list, setList] = useState('categories')
   const navigate = useNavigate();
-  const [isVisible, setIsVisible] = useState(false);
-  const [windowMessage, setWindowMessage] = useState('');
-
-  const elements = [
-      { type: 'h1', text: 'Error' },
-      { type: 'p', text: windowMessage },
-      { type: 'button',
-        text: 'Ok',
-        scaleFrom: 1,
-        scaleTo: 1.2,
-        onClick: () => setIsVisible(false)
-      },
-    ];
 
   useEffect(() => {
     if (!Cookies.get('secretKey')) {
@@ -43,7 +32,7 @@ const AdminInt = () => {
 
   const buttons = [
     {text: 'Categories'},
-    {text: 'Parametres'},
+    {text: 'Parameters'},
     {text: 'Types'},
     {text: 'Products'},
     {text: 'Orders'},
@@ -52,7 +41,7 @@ const AdminInt = () => {
   return (
     <div className='admin-main'>
       <div className='admin-field'>
-      <Window isVisible={isVisible} setIsVisible={setIsVisible} elements={elements}/>
+        <Window/>
         <div className='admin-header'>
           <h1 className='admin-title'>Admin Interface</h1>
           <MyButton 

@@ -30,7 +30,10 @@ export async function createCategory(name, imagePath, typesId) {
             form.append(`TypesId[${index}]`, id);
         });
     }
-    console.log([...form.entries()])
+    console.log('Form fields:');
+    for (let [key, value] of form.entries()) {
+        console.log(`${key}: ${value}`);
+    }
     try {
         const result = await axios({
             method: 'put',
@@ -95,6 +98,9 @@ export async function deleteCategory(id) {
 }
 
 export async function createParameter(name, allowValues, typesId) {
+    console.log('name: ' + name)
+    console.log('allowValues: ' + allowValues)
+    console.log('typesId: ' + typesId)
     try {
         const result = await axios({
             method: 'put',
@@ -119,7 +125,7 @@ export async function updateParameter(id, name, allowValues, typesId) {
     try {
         const result = await axios({
             method: 'patch',
-            url: `/api/Admin/${Cookies.get('secretKey')}/CreateParameter`,
+            url: `/api/Admin/${Cookies.get('secretKey')}/UpdateParameter`,
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -141,13 +147,11 @@ export async function deleteParameter(id) {
     try {
         const result = await axios({
             method: 'delete',
-            url: `/api/Admin/${Cookies.get('secretKey')}/UpdateCategory`,
+            url: `/api/Admin/${Cookies.get('secretKey')}/DeleteParameter`,
             headers: {
             'Content-Type': 'application/json',
             },
-            data: {
-                id:id
-            }
+            data: id
         });
         return result;
     } catch (error) {
@@ -156,7 +160,7 @@ export async function deleteParameter(id) {
     }
 }
 
-export async function createType(parrentId = null, name, parameterId, categoryId, allowValues, typesId) {
+export async function createType(parrentId, name, parameterId, categoryId) {
     try {
         const result = await axios({
             method: 'put',
@@ -168,9 +172,7 @@ export async function createType(parrentId = null, name, parameterId, categoryId
                 parrentId: parrentId,
                 name: name,
                 parameterId: parameterId,
-                categoryId: categoryId,
-                allowValues: allowValues,
-                typesId: typesId
+                categoryId: categoryId
             }
         })
         return result;
@@ -224,7 +226,7 @@ export async function deleteType(id) {
     }
 }
 
-export async function createProduct(name, description, price, discount, num, imagesPath, imagesLinks, typeId, paramValues) {
+export async function createProduct(name, description, price, discount, num, imagesPath, typeId, paramValues) {
     const form = new formData();
     if(name.length > 0) {
         form.append('Name', name);
@@ -235,26 +237,29 @@ export async function createProduct(name, description, price, discount, num, ima
     if(typeId.length > 0) {
         form.append('TypeId', typeId);
     }
-    if(price.length > 0) {
+    if(price !== null && price.length > 0) {
         form.append('Price', price);
     } 
-    if(discount.length > 0) {
+    if(discount !== null && discount.length > 0) {
         form.append('Discount', discount);
     } 
-    if(num.length > 0) {
+    if(num !== null && num.length > 0) {
         form.append("Number", num);
     } 
     if(imagesPath.length > 0) {
-        form.append('Images', imagesPath);
-    } 
-    if(imagesLinks!== null && imagesLinks.length > 0) {
-        form.append("ImageLinks", imagesLinks)
+        imagesPath.forEach((image, index) => {
+            form.append(`Images[${index}]`, image);
+        });
     } 
     if(paramValues.length > 0) {
         paramValues.forEach((param, index) => {
-            form.append(`TypesId[${index}]`, param);
+            form.append(`ParamValues[${index}]`, param);
         });
-    }   
+    }
+    console.log('Form fields:');
+for (let [key, value] of form.entries()) {
+    console.log(`${key}: ${value}`);
+}
     try {
         const result = await axios({
             method: 'post',
@@ -271,21 +276,42 @@ export async function createProduct(name, description, price, discount, num, ima
     }
 }
 
-export async function updateProduct(id, name, description, price, discount, num, imagesPath, imagesLinks = null, typesId, paramValues) {
+export async function updateProduct(id, name, description, price, discount, num, imagesPath, typeId, paramValues) {
     const form = new formData();
-    form.append('Id', id);
-    form.append('Name', name);
-    form.append('Description', description);
-    form.append('Price', price);
-    form.append('Discount', discount);
-    form.append("Number", num);
-    form.append('Images', imagesPath);
-    form.append("ImagesLinks", imagesLinks)
-    form.append('TypesId', JSON.stringify(typesId));
-    form.append('ParamValues', paramValues)    
+    if(id.length > 0){
+        form.append("id", id);
+    }
+    if(name.length > 0) {
+        form.append('Name', name);
+    }
+    if(description.length > 0) {
+        form.append('Description', description);
+    }
+    if(typeId.length > 0) {
+        form.append('TypeId', typeId);
+    }
+    if(price !== null && price.length > 0) {
+        form.append('Price', price);
+    } 
+    if(discount !== null && discount.length > 0) {
+        form.append('Discount', discount);
+    } 
+    if(num !== null && num.length > 0) {
+        form.append("Number", num);
+    } 
+    if(imagesPath.length > 0) {
+        imagesPath.forEach((image, index) => {
+            form.append(`Images[${index}]`, image);
+        });
+    } 
+    if(paramValues.length > 0) {
+        paramValues.forEach((param, index) => {
+            form.append(`ParamValues[${index}]`, param);
+        });
+    }   
     try {
         const result = await axios({
-            method: 'post',
+            method: 'patch',
             url: `/api/Admin/${Cookies.get('secretKey')}/UpdateProduct`,
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -307,9 +333,7 @@ export async function deleteProduct(id) {
             headers: {
             'Content-Type': 'application/json',
             },
-            data: {
-                id:id
-            }
+            data: id
         });
         return result;
     } catch (error) {

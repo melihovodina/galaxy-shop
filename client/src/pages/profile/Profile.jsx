@@ -1,12 +1,12 @@
 import React, {useContext} from 'react'
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import { AuthContext } from '../../components/AuthContext';
+import { AppContext } from '../../components/AppContext';
 import MyButton from '../../components/myButton/MyButton';
 import './profile.css'
 
 const Profile = () => {
-    const { setIsLogged } = useContext(AuthContext);
+    const { setIsLogged } = useContext(AppContext);
     const navigate = useNavigate();
 
     const handleSubmit = () => {
