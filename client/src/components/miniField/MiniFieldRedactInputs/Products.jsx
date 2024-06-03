@@ -174,8 +174,7 @@ const Products = ({ windowDisplay }) => {
                             style={{marginTop: 12}} 
                             onChange={(event) => {
                                 const files = event.target.files;
-                                const imagesArray = Array.from(files);
-                                setImages(imagesArray);
+                                setImages(files);
                             }}
                         />
                     </div>

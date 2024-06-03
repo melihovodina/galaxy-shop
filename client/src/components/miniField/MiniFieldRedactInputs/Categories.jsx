@@ -5,7 +5,6 @@ import MyButton from '../../myButton/MyButton'
 
 const Categories = ({ windowDisplay }) => {
     const [name, setName] = useState('')
-    const [typesId, setTypesId] = useState([])
     const [image, setImage] = useState('')
     const [id, setId] = useState('')
     const [windowMessage, setWindowMessage] = useState('')
@@ -29,7 +28,7 @@ const Categories = ({ windowDisplay }) => {
         switch (windowDisplay) {
             case 'Create':
                 try {
-                    const result = await adminApi.createCategory(name, image, typesId)
+                    const result = await adminApi.createCategory(name, image)
                     if (result.status === 200) {
                         setWindowTitle('Success')
                         setWindowMessage('You created a category')
@@ -45,7 +44,7 @@ const Categories = ({ windowDisplay }) => {
                 break;
             case 'Update':
                 try {
-                    const result = await adminApi.updateCategory(id, name, image, typesId)
+                    const result = await adminApi.updateCategory(id, name, image)
                     if (result.status === 200) {
                         setWindowTitle('Success')
                         setWindowMessage('You updated a category')
@@ -100,19 +99,6 @@ const Categories = ({ windowDisplay }) => {
                             placeholder='Empty'   
                             value={name} 
                             onChange={(event) => setName(event.target.value)}
-                        />
-                    </div>
-                    <div className='mini-field-list-row loading'>
-                        <p className='mini-field-list-text' style={{fontSize: 30}}>Types id:</p> 
-                        <textarea 
-                            name="description" 
-                            id="description" 
-                            cols="30" 
-                            rows="10"
-                            className='mini-field-list-redact-textarea' 
-                            placeholder='Enter separated by commas' 
-                            value={typesId.join(',')} 
-                            onChange={(event) => setTypesId(event.target.value.split(','))}
                         />
                     </div>
                     <div className='mini-field-list-row'>

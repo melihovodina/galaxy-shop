@@ -5,7 +5,6 @@ import MyButton from '../../myButton/MyButton'
 
 const Parameters = ({ windowDisplay }) => {
     const [name, setName] = useState('')
-    const [typesId, setTypesId] = useState([])
     const [allowValues, setAllowValues] = useState([])
     const [id, setId] = useState('')
     const [windowMessage, setWindowMessage] = useState('')
@@ -29,7 +28,7 @@ const Parameters = ({ windowDisplay }) => {
         switch (windowDisplay) {
             case 'Create':
                 try {
-                    const result = await adminApi.createParameter(name, allowValues, typesId)
+                    const result = await adminApi.createParameter(name, allowValues)
                     if (result.status === 200) {
                         setWindowTitle('Success')
                         setWindowMessage('You created a parameter')
@@ -45,7 +44,7 @@ const Parameters = ({ windowDisplay }) => {
                 break;
             case 'Update':
                 try {
-                    const result = await adminApi.updateParameter(id, name, allowValues, typesId )
+                    const result = await adminApi.updateParameter(id, name, allowValues)
                     if (result.status === 200) {
                         setWindowTitle('Success')
                         setWindowMessage('You updated a parameter')
@@ -102,19 +101,6 @@ const Parameters = ({ windowDisplay }) => {
                             onChange={(event) => setName(event.target.value)}
                         />
                     </div>
-                    <div className='mini-field-list-row loading'>
-                        <p className='mini-field-list-text' style={{fontSize: 30}}>Types id:</p> 
-                        <textarea 
-                            name="description" 
-                            id="description" 
-                            cols="30" 
-                            rows="10"
-                            className='mini-field-list-redact-textarea' 
-                            placeholder='Enter separated by commas' 
-                            value={typesId.join(',')} 
-                            onChange={(event) => setTypesId(event.target.value.split(', '))}
-                        />
-                    </div>
                     <div className='mini-field-list-row'>
                         <p className='mini-field-list-text' style={{fontSize: 30}}>Allowed values:</p> 
                         <textarea 
@@ -125,7 +111,14 @@ const Parameters = ({ windowDisplay }) => {
                             className='mini-field-list-redact-textarea' 
                             placeholder='Enter separated by commas' 
                             value={allowValues.join(',')} 
-                            onChange={(event) => setAllowValues(event.target.value.split(', '))}
+                            onChange={(event) => {
+                                const value = event.target.value;
+                                if (value.trim() === '') {
+                                    setAllowValues([]);
+                                } else {
+                                    setAllowValues(value.split(','));
+                                }
+                            }}
                         />
                     </div>
                 </>
