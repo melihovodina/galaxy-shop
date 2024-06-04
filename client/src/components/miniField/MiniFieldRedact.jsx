@@ -18,7 +18,7 @@ const MiniFieldRedact = ({ windowDisplay, list }) => {
           <div>
             {list === 'categories' && <Categories windowDisplay={windowDisplay}/>}
             {list === 'products' && <Products windowDisplay={windowDisplay}/>}
-            {list === 'parameters' && <Parameters windowDisplay={windowDisplay}/>}
+            {/* {list === 'parameters' && <Parameters windowDisplay={windowDisplay}/>} */}
             {list === 'types' && <Types windowDisplay={windowDisplay}/>}
           </div>
         )

@@ -19,17 +19,13 @@ export async function checkKey(key) {
     }
 }
 
-export async function createCategory(name, imagePath) {
+export async function createCategory(name, image) {
     const form = new formData();
     if(name.length > 0) {
         form.append('Name', name);
     }
-    if(typeof imagePath === object) {
-        form.append('Image', imagePath);
-    }
-    console.log('Form fields:');
-    for (let [key, value] of form.entries()) {
-        console.log(`${key}: ${value}`);
+    if(typeof image === "object") {
+        form.append('Image', image);
     }
     try {
         const result = await axios({
@@ -47,7 +43,7 @@ export async function createCategory(name, imagePath) {
     }
 }
 
-export async function updateCategory(id, name, imagePath) {
+export async function updateCategory(id, name, image) {
     const form = new formData();
     if(id.length > 0) {
         form.append('Id', id);
@@ -55,8 +51,8 @@ export async function updateCategory(id, name, imagePath) {
     if(name.length > 0) {
         form.append('Name', name);
     }
-    if(typeof imagePath === object) {
-        form.append('Image', imagePath);
+    if(typeof image === 'object') {
+        form.append('Image', image);
     }    
     try {
         const result = await axios({
@@ -157,8 +153,8 @@ export async function createType(parrentId, name, parametersId, categoryId) {
             parametersId: parametersId,
             categoryId: categoryId
           };
-      
         const filteredData = _.pickBy(data, _.identity);
+        console.log(JSON.stringify(filteredData))
         const result = await axios({
             method: 'put',
             url: `/api/Admin/${Cookies.get('secretKey')}/CreateType`,
@@ -238,16 +234,16 @@ export async function createProduct(name, description, price, discount, num, ima
         form.append("Number", num);
     } 
     if (images.length > 0) {
-        images.forEach((image, index) => {
-          form.append(`Images[${index}]`, image);
-        });
+        for (let i = 0; i < images.length; i++) {
+            form.append("Images", images[i]);
+        }
     }
     if(paramValues.length > 0) {
         paramValues.forEach((param, index) => {
             form.append(`ParamValues[${index}]`, param);
         });
     }
-    console.log('Form fields:');
+    console.log('Form data:');
     for (let [key, value] of form.entries()) {
         console.log(`${key}: ${value}`);
     }
@@ -267,7 +263,7 @@ export async function createProduct(name, description, price, discount, num, ima
     }
 }
 
-export async function updateProduct(id, name, description, price, discount, num, imagesPath, typeId, paramValues) {
+export async function updateProduct(id, name, description, price, discount, num, images, typeId, paramValues) {
     const form = new formData();
     if(id.length > 0){
         form.append("id", id);
@@ -290,16 +286,20 @@ export async function updateProduct(id, name, description, price, discount, num,
     if(num !== null && num.length > 0) {
         form.append("Number", num);
     } 
-    if(imagesPath.length > 0) {
-        imagesPath.forEach((image, index) => {
-            form.append(`Images[${index}]`, image);
-        });
+    if(images.length > 0) {
+        for (let i = 0; i < images.length; i++) {
+            form.append("Images", images[i]);
+        }
     } 
     if(paramValues.length > 0) {
         paramValues.forEach((param, index) => {
             form.append(`ParamValues[${index}]`, param);
         });
-    }   
+    }
+    console.log('Form data:');
+    for (let [key, value] of form.entries()) {
+        console.log(`${key}: ${value}`);
+    }    
     try {
         const result = await axios({
             method: 'patch',

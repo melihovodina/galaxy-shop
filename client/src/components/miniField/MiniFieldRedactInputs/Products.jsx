@@ -87,8 +87,8 @@ const Products = ({ windowDisplay }) => {
     return (
         <>  
             {windowDisplay !== 'Create' &&             
-                <div className='mini-field-list-row loading'>
-                    <p className='mini-field-list-text' style={{ fontSize: 30 }}>Id:</p>
+                <div className='mini-field-list-row'>
+                    <p className='mini-field-list-redact-text'>Id:</p>
                     <input
                         className='mini-field-list-redact-input'
                         placeholder='Empty'
@@ -99,8 +99,8 @@ const Products = ({ windowDisplay }) => {
             }
             {windowDisplay !== 'Delete' &&
                 <> 
-                    <div className='mini-field-list-row loading'>
-                        <p className='mini-field-list-text' style={{fontSize: 30}}>Name:</p> 
+                    <div className='mini-field-list-row'>
+                        <p className='mini-field-list-redact-text'>Name:</p> 
                         <input 
                             className='mini-field-list-redact-input' 
                             placeholder='Empty'   
@@ -109,7 +109,7 @@ const Products = ({ windowDisplay }) => {
                         />
                     </div>
                     <div className='mini-field-list-row loading'>
-                        <p className='mini-field-list-text' style={{fontSize: 30}}>Description:</p> 
+                        <p className='mini-field-list-redact-text'>Description:</p> 
                         <textarea 
                             name="description" 
                             id="description" 
@@ -121,8 +121,8 @@ const Products = ({ windowDisplay }) => {
                             onChange={(event) => setDescription(event.target.value)}
                         />
                     </div>
-                    <div className='mini-field-list-row loading'>
-                        <p className='mini-field-list-text' style={{fontSize: 30}}>Parameters values:</p> 
+                    <div className='mini-field-list-row'>
+                        <p className='mini-field-list-redact-text'>Parameters values:</p> 
                         <textarea 
                             name="description" 
                             id="description" 
@@ -131,11 +131,18 @@ const Products = ({ windowDisplay }) => {
                             className='mini-field-list-redact-textarea'
                             placeholder='Empty' 
                             value={paramValues} 
-                            onChange={(event) => setParamValues(event.target.value.split(','))}
+                            onChange={(event) => {
+                                const value = event.target.value;
+                                if (value.trim() === '') {
+                                    setParamValues([]);
+                                } else {
+                                    setParamValues(value.split(','));
+                                }
+                            }}
                         />
                     </div>
-                    <div className='mini-field-list-row loading'>
-                        <p className='mini-field-list-text' style={{fontSize: 30}}>Type id:</p> 
+                    <div className='mini-field-list-row'>
+                        <p className='mini-field-list-redact-text'>Type id:</p> 
                         <input 
                             className='mini-field-list-redact-input' 
                             placeholder='Empty'   
@@ -143,22 +150,22 @@ const Products = ({ windowDisplay }) => {
                             onChange={(event) => setTypeId(event.target.value)}
                         />
                     </div>
-                    <div className='mini-field-list-row loading'>
-                        <p className='mini-field-list-text' style={{fontSize: 30}}>Price:</p> 
+                    <div className='mini-field-list-row'>
+                        <p className='mini-field-list-redact-text'>Price:</p> 
                         <input 
                             className='mini-field-list-redact-input' 
                             placeholder='Empty'   
                             value={price} 
                             onChange={(event) => setPrice(event.target.value)}
                         />
-                        <p className='mini-field-list-text' style={{fontSize: 30}}>Discount:</p> 
+                        <p className='mini-field-list-redact-text'>Discount:</p> 
                         <input 
                             className='mini-field-list-redact-input' 
                             placeholder='Empty'   
                             value={discount} 
                             onChange={(event) => setDiscount(event.target.value)}
                         />
-                        <p className='mini-field-list-text' style={{fontSize: 30}}>Quantity:</p> 
+                        <p className='mini-field-list-redact-text'>Quantity:</p> 
                         <input 
                             className='mini-field-list-redact-input' 
                             placeholder='Empty'   
@@ -167,8 +174,9 @@ const Products = ({ windowDisplay }) => {
                         />
                     </div>
                     <div className='mini-field-list-row'>
-                        <p className='mini-field-list-text' style={{fontSize: 30}}>Images:</p> 
-                        <input 
+                        <p className='mini-field-list-redact-text'>Images:</p> 
+                        <input
+                            className='mini-field-list-text' 
                             type='file' 
                             multiple 
                             style={{marginTop: 12}} 

@@ -83,7 +83,7 @@ const Types = ({ windowDisplay }) => {
         <>  
             {windowDisplay !== 'Create' &&             
                 <div className='mini-field-list-row loading'>
-                    <p className='mini-field-list-text' style={{ fontSize: 30 }}>Id:</p>
+                    <p className='mini-field-list-redact-text' >Id:</p>
                     <input
                         className='mini-field-list-redact-input'
                         placeholder='Empty'
@@ -95,7 +95,7 @@ const Types = ({ windowDisplay }) => {
             {windowDisplay !== 'Delete' &&
                 <> 
                     <div className='mini-field-list-row loading'>
-                        <p className='mini-field-list-text' style={{fontSize: 30}}>Name:</p> 
+                        <p className='mini-field-list-redact-text'>Name:</p> 
                         <input 
                             className='mini-field-list-redact-input' 
                             placeholder='Empty'   
@@ -104,7 +104,7 @@ const Types = ({ windowDisplay }) => {
                         />
                     </div>
                     <div className='mini-field-list-row loading'>
-                        <p className='mini-field-list-text' style={{ fontSize: 30 }}>Parent id:</p>
+                        <p className='mini-field-list-redact-text' >Parent id:</p>
                         <input
                             className='mini-field-list-redact-input'
                             placeholder="If it's needed"
@@ -113,7 +113,7 @@ const Types = ({ windowDisplay }) => {
                         />
                     </div>
                     <div className='mini-field-list-row loading'>
-                        <p className='mini-field-list-text' style={{fontSize: 30}}>Category id:</p> 
+                        <p className='mini-field-list-redact-text'>Category id:</p> 
                         <input 
                             className='mini-field-list-redact-input' 
                             placeholder='Empty'   
@@ -121,8 +121,8 @@ const Types = ({ windowDisplay }) => {
                             onChange={(event) => setCategoryId(event.target.value)}
                         />
                     </div>
-                    <div className='mini-field-list-row loading'>
-                        <p className='mini-field-list-text' style={{fontSize: 30}}>Parameters id:</p> 
+                    {/* <div className='mini-field-list-row loading'>
+                        <p className='mini-field-list-redact-text'>Parameters id:</p> 
                         <textarea 
                             name="description" 
                             id="description" 
@@ -131,9 +131,16 @@ const Types = ({ windowDisplay }) => {
                             className='mini-field-list-redact-textarea' 
                             placeholder='Enter separated by commas' 
                             value={parametersId.join(',')} 
-                            onChange={(event) => setParametersId(event.target.value.split(', '))}
+                            onChange={(event) => {
+                                const value = event.target.value;
+                                if (value.trim() === '') {
+                                    setParametersId([]);
+                                } else {
+                                    setParametersId(value.split(','));
+                                }
+                            }}
                         />
-                    </div>
+                    </div> */}
                 </>
             }
             <MyButton 

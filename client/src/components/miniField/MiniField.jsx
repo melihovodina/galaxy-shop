@@ -28,13 +28,13 @@ const MiniField = ({ list }) => {
                     console.log(error)
                 }
                 break;
-            case 'parameters':
-                try {
-                    result = await userApi.getParameters();
-                    setInfo(result)
-                } catch (error) {
-                    console.log(error)
-                }
+            // case 'parameters':
+            //     try {
+            //         result = await userApi.getParameters();
+            //         setInfo(result)
+            //     } catch (error) {
+            //         console.log(error)
+            //     }
                 break;
             case 'types':
                 try {

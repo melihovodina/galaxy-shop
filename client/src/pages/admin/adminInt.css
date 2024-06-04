@@ -45,7 +45,7 @@
 
 @media (min-width: 2100px) {
     .admin-title {
-        font-size: 70px;
+        font-size: 90px;
     }
 
     .admin-exit-button {
@@ -53,6 +53,6 @@
         height: 70px;
         border-radius: 35px;
         font-size:35px;
-        margin: -80px 20px 0px 0px;
+        margin: -100px 20px 0px 0px;
     }
 }

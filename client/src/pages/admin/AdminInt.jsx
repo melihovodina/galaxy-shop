@@ -32,7 +32,7 @@ const AdminInt = () => {
 
   const buttons = [
     {text: 'Categories'},
-    {text: 'Parameters'},
+    // {text: 'Parameters'},
     {text: 'Types'},
     {text: 'Products'},
     {text: 'Orders'},

@@ -81,7 +81,7 @@ const Categories = ({ windowDisplay }) => {
         <>  
             {windowDisplay !== 'Create' &&             
                 <div className='mini-field-list-row loading'>
-                    <p className='mini-field-list-text' style={{ fontSize: 30 }}>Id:</p>
+                    <p className='mini-field-list-redact-text' >Id:</p>
                     <input
                         className='mini-field-list-redact-input'
                         placeholder='Empty'
@@ -93,7 +93,7 @@ const Categories = ({ windowDisplay }) => {
             {windowDisplay !== 'Delete' &&
                 <> 
                     <div className='mini-field-list-row loading'>
-                        <p className='mini-field-list-text' style={{fontSize: 30}}>Name:</p> 
+                        <p className='mini-field-list-redact-text'>Name:</p> 
                         <input 
                             className='mini-field-list-redact-input' 
                             placeholder='Empty'   
@@ -102,8 +102,9 @@ const Categories = ({ windowDisplay }) => {
                         />
                     </div>
                     <div className='mini-field-list-row'>
-                        <p className='mini-field-list-text' style={{fontSize: 30}}>Image:</p> 
-                        <input 
+                        <p className='mini-field-list-redact-text'>Image:</p> 
+                        <input
+                            className='mini-field-list-text' 
                             type='file' 
                             style={{marginTop: 12}} 
                             onChange={(event) => {

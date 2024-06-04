@@ -81,7 +81,7 @@ const Parameters = ({ windowDisplay }) => {
         <>  
             {windowDisplay !== 'Create' &&             
                 <div className='mini-field-list-row loading'>
-                    <p className='mini-field-list-text' style={{ fontSize: 30 }}>Id:</p>
+                    <p className='mini-field-list-redact-text'>Id:</p>
                     <input
                         className='mini-field-list-redact-input'
                         placeholder='Empty'
@@ -93,7 +93,7 @@ const Parameters = ({ windowDisplay }) => {
             {windowDisplay !== 'Delete' &&
                 <> 
                     <div className='mini-field-list-row loading'>
-                        <p className='mini-field-list-text' style={{fontSize: 30}}>Name:</p> 
+                        <p className='mini-field-list-redact-text'>Name:</p> 
                         <input 
                             className='mini-field-list-redact-input' 
                             placeholder='Empty'   
@@ -102,7 +102,7 @@ const Parameters = ({ windowDisplay }) => {
                         />
                     </div>
                     <div className='mini-field-list-row'>
-                        <p className='mini-field-list-text' style={{fontSize: 30}}>Allowed values:</p> 
+                        <p className='mini-field-list-redact-text'>Allowed values:</p> 
                         <textarea 
                             name="description" 
                             id="description" 
