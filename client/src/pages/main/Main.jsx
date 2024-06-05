@@ -6,27 +6,45 @@ import Header from '../../components/header/Header';
 import PhoneList from '../../components/phoniList/PhoneList';
 import Window from '../../components/window/Window'
 import './main.css'
-import Loading from '../../components/Loading';
 
 const Main = () => {
   const [items, setItems] = useState([]);
+  const [categories, setCategories] = useState([])
+  const [categoryId, setCategoryId] = useState('')
   const [windowMessage, setWindowMessage] = useState('');
-  const { setIsVisible, setElements } = useContext(AppContext);
+  const { setIsVisible, setElements, setLoading } = useContext(AppContext);
+
+  const getFirstCategory = async () => {
+    let response = []
+    try {
+        response = await userApi.getCategories();
+        setCategories(response.data)
+        setCategoryId(response.data[0].id)
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        setWindowMessage('Server is not responding now, try later');
+        setIsVisible(true)
+    }
+    fetchData(response.data[0].id)
+  }
+
+  const fetchData = async (categoryId) => {
+    try {
+        setLoading(true)
+        let response = await userApi.getByCategory(categoryId);
+        setItems(response.data);
+        setLoading(false)
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        setWindowMessage('Server is not responding now, try later');
+        setLoading(false)
+        setIsVisible(true)
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-          let response = await userApi.getCatalog();
-          setItems(response.data);
-      } catch (error) {
-          console.error('Error fetching data:', error);
-          setWindowMessage('Server is not responding now, try later');
-          setIsVisible(true)
-      }
-    };
-
-    fetchData();
-  },[])
+    getFirstCategory();
+  }, []);
 
   useEffect(() => {
     setElements([
@@ -45,8 +63,18 @@ const Main = () => {
     <div className='main'>
       <FallingDots/>
       <Window/>
-      <Header/>
-      <PhoneList items={items} setItems={setItems}/>
+      <Header 
+        setItems={setItems} 
+        fetchData={fetchData} 
+        categories={categories}
+        setCategoryId={setCategoryId}
+      />
+      <PhoneList 
+        items={items} 
+        setItems={setItems}
+        categoryId={categoryId}
+        fetchDataItems={fetchData} 
+      />
     </div>
   )
 }

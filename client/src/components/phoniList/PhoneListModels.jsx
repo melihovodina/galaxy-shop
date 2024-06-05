@@ -2,9 +2,9 @@ import React, { useContext, useState } from 'react'
 import * as userApi from '../../api/userApi'
 import { AppContext } from '../AppContext'
 
-const PhoneListModels = ({ types, setItems, setLoading }) => {
+const PhoneListModels = ({ types, setItems }) => {
     const [chosen, setChosen] = useState([])
-    const { setIsVisible } = useContext(AppContext);
+    const { setIsVisible, setLoading } = useContext(AppContext);
 
     const fetchDataTypes = async (typeId) => {
         try {
@@ -58,7 +58,7 @@ const PhoneListModels = ({ types, setItems, setLoading }) => {
 
     return (
         <div className='phone-list-models'>
-            <h1 className='phone-list-models-name'>Choose a model</h1>
+            <h1 className='phone-list-models-name'>Choose models</h1>
             {types.map((type) => (
                 <div className='phone-list-models-types'>
                     <p className='phone-list-models-text' data-type-id={type.id} onClick={(event) => {

@@ -1,97 +1,188 @@
 .header {
-    width: 100%;
-    position: absolute;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
+  width: 100%;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  color: white;
 }
 
 .header-name {
-    color: white;
-    font-family: 'Lexend-regular';
-    font-size: 30px;
-    margin: 14px 0px 0px 10px;
-    user-select: none;
+  font-family: 'Lexend-regular';
+  font-size: 30px;
+  margin: 14px 0px 0px 10px;
+  user-select: none;
 }
 
 .header-input-block {
-    width: 50%;
-    margin-left: 25%;
-    margin-right: 25%;
-    display: flex;
-    justify-content: center;
-    position: absolute;
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
 }
 
 .header-input {
-    width: 70%;
-    height: 43px;
-    border-radius: 20px;
-    background-color: rgba(52, 52, 52, 0.8);
-    color: white;
-    margin-bottom: 30px;
-    border: 0px;
-    cursor: pointer;
-    font-family: 'Lexend-light';
-    font-size: 20px;
-    padding-left: 15px;
-    margin-top: 15px;
-    position: relative;
+  width: 70%;
+  height: 43px;
+  border-radius: 20px;
+  background-color: rgba(52, 52, 52, 0.8);
+  color: white;
+  margin-bottom: 30px;
+  border: 0px;
+  cursor: pointer;
+  font-family: 'Lexend-light';
+  font-size: 20px;
+  padding-left: 15px;
+  margin-top: 15px;
+  position: relative;
 }
 
 .header-input::placeholder {
-    color: rgba(216, 216, 216, 0.662);
-    user-select: none;
+  color: rgba(216, 216, 216, 0.662);
+  user-select: none;
 }
 
 .header-input:focus {
-    outline: none;
+  outline: none;
 }
 
 .header-button {
-    width: 100px;
-    height: 45px;
-    border-radius: 20px;
-    background-color: rgba(52, 52, 52, 0.8);
-    color: white;
-    font-family: 'Lexend-light';
-    font-size: 20px;
-    margin: 15px 20px 0px 5px;
-    float: right;
+  width: 100px;
+  height: 45px;
+  border-radius: 20px;
+  background-color: rgba(52, 52, 52, 0.8);
+  font-family: 'Lexend-light';
+  font-size: 20px;
+  margin: 15px 20px 0px 5px;
+  float: right;
 }
 
 .header-button-profile {
-    width: 80px;
-    height: 45px;
-    border-radius: 20px;
-    background-color: rgba(52, 52, 52, 0.8);
-    color: white;
-    font-family: 'Lexend-light';
-    font-size: 20px;
-    margin: 15px 20px 0px 5px;
-    float: right;
-}
-
-.header-button-categories {
-    width: 35px;
-    height: 35px;
-    border-radius: 20px;
-    background-color: rgba(52, 52, 52, 0.8);
-    color: white;
-    font-family: 'Lexend-light';
-    font-size: 20px;
-    margin: 18px 10px 0px 5px;
-}
-
-.header-button-arrow {
-    transform: rotate(180deg);
-    transition: 0.5s ease-in-out;
-}
-
-.header-button-arrow:hover {
-    transform: rotate(0deg);
+  width: 80px;
+  height: 50px;
+  border-radius: 20px;
+  background-color: rgba(52, 52, 52, 0.8);
+  color: white;
+  font-family: 'Lexend-light';
+  font-size: 20px;
+  margin: 10px 10px 0px 5px;
+  float: right;
 }
 
 .header-profile {
-    color: white;
+  scale: 1.7;
+}
+
+.header-button-categories {
+  width: 35px;
+  height: 35px;
+  border-radius: 20px;
+  background-color: rgba(52, 52, 52, 0.8);
+  font-family: 'Lexend-light';
+  font-size: 20px;
+  margin: 18px 10px 0px 5px;
+  transition: all 0.3s ease-in-out;
+  color: white;
+}
+
+.header-button-arrow {
+  transform: rotate(180deg);
+}
+
+.header-button-arrow.rotated {
+   animation: rotate 0.5s ease-in-out forwards;
+}
+  
+  .header-button-arrow.not-rotated {
+  animation: rotate-back 0.5s ease-in-out forwards;
+}
+  
+  @keyframes rotate {
+    0% {
+      transform: rotate(180deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+  
+  @keyframes rotate-back {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(180deg);
+    }
+  }
+
+.header-dropdown-menu {
+  width: 100%;
+  height: auto;
+  min-height: 300px;
+  position: absolute;
+  background-color: rgba(26, 26, 26, 0.9);
+  z-index: -1;
+  text-align: center;
+  top: -100vh;
+}
+
+.header-opened {
+  animation: open 0.8s ease-in-out forwards;
+}
+
+.header-closed {
+  animation: close 0.8s ease-in-out forwards;
+}
+
+@keyframes open {
+  0% {
+    top: -100vh;
+  }
+  100% {
+    top: 110%
+  }
+}
+
+@keyframes close {
+  0% {
+    top: 110%
+  }
+  100% {
+    top: -100vh
+  }
+}
+
+.header-dropdown-menu-name {
+  font-size: 30px;
+  user-select: none;
+}
+
+.header-dropdown-menu-field {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.header-category {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px 20px 40px 20px;
+  cursor: pointer;
+}
+
+.header-category-image {
+  width: auto;
+  height: 100px;
+}
+
+.header-category-name {
+  font-size: 20px;
 }

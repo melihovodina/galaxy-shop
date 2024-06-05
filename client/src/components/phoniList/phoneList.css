@@ -9,12 +9,13 @@
 }
 
 .phone-list-models {
+    max-width: 18%;
     width: 20%;
     height: fit-content;
     min-height: 400px;
     background-color: rgba(52, 52, 52, 0.8);
     border-radius: 20px;
-    margin: 20px 0px 0 20px;
+    margin: 20px 0px 0px 20px;
     display: flex;
     text-align: center;
     align-items: center;
@@ -103,7 +104,7 @@
 
 .phone-list-item-name {
     font-size: 25px;
-    margin: 10px 0px 0px 0px;
+    margin: 10px 0px 0px 10px;
 }
 
 .phone-list-item-price {

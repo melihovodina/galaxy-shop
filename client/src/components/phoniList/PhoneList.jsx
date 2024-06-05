@@ -6,28 +6,30 @@ import PhoneListItem from './PhoneListItem'
 import Loading from '../Loading'
 import './phoneList.css'
 
-const PhoneList = ( { items, setItems} ) => {
+const PhoneList = ( { items, setItems, categoryId, fetchDataItems } ) => {
     const [types, setTypes] = useState([])
-    const [loading, setLoading] = useState(false)
-    const { setIsVisible } = useContext(AppContext);
+    const { setIsVisible, loading } = useContext(AppContext);
+
+    const fetchData = async (categoryId) => {
+        try {
+            const response = await userApi.getTypesByCategoryId(categoryId)
+            setTypes(response.data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            setIsVisible(true)
+        }
+    };
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await userApi.getTypes()
-                setTypes(response.data);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-                setIsVisible(true)
-            }
-        };
-      
-        fetchData();
-    }, []);
+        if (categoryId.length > 0) {
+          fetchData(categoryId);
+          fetchDataItems(categoryId);
+        }
+      }, [categoryId]);
 
     return (
         <div className='phone-list-main'>
-            <PhoneListModels types={types} setItems={setItems} setLoading={setLoading} items={items}/>
+            <PhoneListModels types={types} setItems={setItems} items={items}/>
             <Loading loading={loading} loadingClass="loading">
                 <div className='phone-list-items loading'>
                     {items.map((item) => (<PhoneListItem item={item}/>))}

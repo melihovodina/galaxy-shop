@@ -13,9 +13,8 @@ import './login.css'
 
 const DevLogin = () => {
   const [writtenKey, setWrittenKey] = useState('')
-  const [loading, setLoading] = useState(false);
   const [windowMessage, setWindowMessage] = useState('');
-  const { setIsVisible, setElements } = useContext(AppContext);
+  const { setIsVisible, setElements, loading, setLoading } = useContext(AppContext);
   const navigate = useNavigate();
 
   useEffect(() => {

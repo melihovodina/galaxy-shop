@@ -7,6 +7,7 @@ const AppProvider = ({ children }) => {
   const [isLogged, setIsLogged] = useState(false);
   const [isVisible,  setIsVisible] = useState(false);
   const [elements, setElements] = useState([]);
+  const [loading, setLoading] = useState(false);
   
   useEffect(() => {
     if (Cookies.get('token')!== undefined) {
@@ -22,6 +23,8 @@ const AppProvider = ({ children }) => {
       setIsVisible, 
       elements, 
       setElements,
+      loading,
+      setLoading
     }}>
       {children}
     </AppContext.Provider>

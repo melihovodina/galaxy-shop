@@ -13,9 +13,8 @@ import './login.css'
 const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
   const [windowMessage, setWindowMessage] = useState('');
-  const { setIsLogged, setIsVisible, setElements } = useContext(AppContext);
+  const { setIsLogged, setIsVisible, setElements, loading, setLoading } = useContext(AppContext);
   const navigate = useNavigate();
 
   useEffect(() => {
