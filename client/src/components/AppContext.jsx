@@ -15,7 +15,14 @@ const AppProvider = ({ children }) => {
   }, []);
 
   return (
-    <AppContext.Provider value={{ isLogged, setIsLogged, isVisible, setIsVisible, elements, setElements }}>
+    <AppContext.Provider value={{ 
+      isLogged, 
+      setIsLogged, 
+      isVisible, 
+      setIsVisible, 
+      elements, 
+      setElements,
+    }}>
       {children}
     </AppContext.Provider>
   );

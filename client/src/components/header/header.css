@@ -72,6 +72,26 @@
     float: right;
 }
 
+.header-button-categories {
+    width: 35px;
+    height: 35px;
+    border-radius: 20px;
+    background-color: rgba(52, 52, 52, 0.8);
+    color: white;
+    font-family: 'Lexend-light';
+    font-size: 20px;
+    margin: 18px 10px 0px 5px;
+}
+
+.header-button-arrow {
+    transform: rotate(180deg);
+    transition: 0.5s ease-in-out;
+}
+
+.header-button-arrow:hover {
+    transform: rotate(0deg);
+}
+
 .header-profile {
     color: white;
 }

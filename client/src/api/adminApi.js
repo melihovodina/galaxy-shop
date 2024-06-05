@@ -2,7 +2,6 @@ import axios from 'axios';
 import formData from 'form-data';
 import Cookies from 'js-cookie';
 import _ from 'lodash'
-import { object } from 'prop-types';
 
 axios.defaults.baseURL = 'http://localhost:5299';
 

@@ -7,7 +7,6 @@ import ButtonList from '../../components/buttonList/ButtonList';
 import MiniField from '../../components/miniField/MiniField';
 import './adminInt.css'
 
-
 const AdminInt = () => {
   const [list, setList] = useState('categories')
   const navigate = useNavigate();

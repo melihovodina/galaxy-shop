@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
+import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
 import { AppContext } from '../AppContext';
 import MyButton from '../myButton/MyButton'
 import './header.css'
@@ -24,14 +25,6 @@ const Header = () => {
                     >
                         <PersonRoundedIcon/>
                     </MyButton>
-                    <MyButton 
-                        className='header-button'
-                        scaleFrom={1} 
-                        scaleTo={1.2}
-                        onClick={() => navigate('/devLogin')}
-                    >
-                        <>adminka</>
-                    </MyButton>
                 </>
             ) : (
                 <>
@@ -43,18 +36,18 @@ const Header = () => {
                     >
                         <>Sign In</>
                     </MyButton>
-                    <MyButton 
-                        className='header-button'
-                        scaleFrom={1} 
-                        scaleTo={1.2}
-                        onClick={() => navigate('/cart')}
-                    >
-                        <>Cart</>
-                    </MyButton>
                 </>
             )}
             <div className='header-input-block'>
-                <input className='header-input' placeholder='Search'/>
+                    <MyButton 
+                        className='header-button-categories'
+                        scaleFrom={1} 
+                        scaleTo={1.2}
+                        childrenClassName='header-button-arrow'
+                    >
+                        <KeyboardArrowUpRoundedIcon fontSize='large'/>
+                    </MyButton>        
+                <input className='header-input' placeholder='Search by id'/>
             </div>
             <p className='header-name'>Galaxy Shop</p>
         </div>

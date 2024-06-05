@@ -1,0 +1,111 @@
+.phone-list-main {
+    width: 100%;
+    height: 90%;
+    position: absolute;
+    top: 10%;
+    flex-direction: row;
+    display: flex;
+    color: white;
+}
+
+.phone-list-models {
+    width: 20%;
+    height: fit-content;
+    min-height: 400px;
+    background-color: rgba(52, 52, 52, 0.8);
+    border-radius: 20px;
+    margin: 20px 0px 0 20px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.phone-list-models-name {
+    font-size: 25px;
+    margin-bottom: 30px;
+    user-select: none;
+}
+
+.phone-list-models-types {
+    width: 100%;
+    display: flex;
+    float: left;
+}
+
+.phone-list-models-text {
+    color: white;
+    font-size: 20px;
+    margin: 0px 0px 10px 20px;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+}
+
+.phone-list-models-text::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: white;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+  
+.phone-list-models-text:hover::after {
+    transform: scaleX(1);
+}
+
+.phone-list-models-text.active::after {
+    transform: scaleX(1);
+}
+
+.phone-list-items {
+    width: 85%;
+    height: 100%;
+    overflow-y: auto;   
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    float: right;
+}
+
+.phone-list-items::-webkit-scrollbar {
+    display: none;
+}
+
+.phone-list-item-main {
+    width: 300px;
+    height: 380px;
+    background-color: rgba(52, 52, 52, 0.8);
+    margin: 20px 30px 20px 30px;
+    border-radius: 20px;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.phone-list-item-image {
+    width: auto;
+    height: 300px;
+}
+
+.phone-list-item-text {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.phone-list-item-name {
+    font-size: 25px;
+    margin: 10px 0px 0px 0px;
+}
+
+.phone-list-item-price {
+    margin: 60px 0px 0px 0px;
+}
