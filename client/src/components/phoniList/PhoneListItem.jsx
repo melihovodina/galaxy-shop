@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AppContext } from '../AppContext'
+import { useNavigate } from 'react-router-dom'
+
 const PhoneListItem = ({ item }) => {
+  const { setItem } = useContext(AppContext)
+  const navigate = useNavigate()
+
+  const handleClick = () => {
+    setItem(item) 
+    navigate('/product')
+  }
+  
   return (
-    <div className='phone-list-item-main'>
+    <div className='phone-list-item-main' onClick={() => handleClick()}>
         <img className='phone-list-item-image' src={item.imageLinks} alt={item.name}/>
         <div className='phone-list-item-text'>
           <h1 className='phone-list-item-name'>{item.name}</h1>

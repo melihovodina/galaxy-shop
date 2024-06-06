@@ -9,13 +9,13 @@
 }
 
 .phone-list-models {
-    max-width: 18%;
-    width: 20%;
+    max-width: 260px;
+    width: 280px;
     height: fit-content;
     min-height: 400px;
     background-color: rgba(52, 52, 52, 0.8);
     border-radius: 20px;
-    margin: 20px 0px 0px 20px;
+    margin: 20px 0px 0px 35px;
     display: flex;
     text-align: center;
     align-items: center;
@@ -109,4 +109,48 @@
 
 .phone-list-item-price {
     margin: 60px 0px 0px 0px;
+}
+
+@media (min-width: 2100px) {
+    .phone-list-models-name {
+        font-size: 40px;
+        margin-bottom: 30px;
+    }
+    
+    .phone-list-models-text {
+        font-size: 30px;
+        margin: 0px 0px 15px 20px;
+    }
+    
+    .phone-list-item-main {
+        width: 400px;
+        height: 480px;
+        margin: 20px 40px 30px 40px;
+    }
+    
+    .phone-list-item-image {
+        width: auto;
+        height: 380px;
+    }
+    
+    .phone-list-item-text {
+        width: 400px;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .phone-list-item-name {
+        font-size: 35px;
+        margin: 10px 0px 0px 10px;
+    }
+    
+    .phone-list-item-price {
+        font-size: 30px;
+        margin: 60px 0px 0px 0px;
+    }
+
+    .phone-list-models {
+        max-width: 400px;
+        width: 420px;
+    }
 }

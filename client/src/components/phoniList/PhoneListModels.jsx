@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import * as userApi from '../../api/userApi'
 import { AppContext } from '../AppContext'
 
-const PhoneListModels = ({ types, setItems }) => {
+const PhoneListModels = ({ types, setItems, categoryId }) => {
     const [chosen, setChosen] = useState([])
     const { setIsVisible, setLoading } = useContext(AppContext);
 
@@ -22,7 +22,7 @@ const PhoneListModels = ({ types, setItems }) => {
     const fetchDataCategories = async () => {
         try {
             setLoading(true)
-            let response = await userApi.getCatalog();
+            let response = await userApi.getByCategory(categoryId);
             setItems(response.data);
             setLoading(false)
         } catch (error) {

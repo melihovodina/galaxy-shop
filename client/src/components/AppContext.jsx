@@ -6,8 +6,9 @@ const AppContext = createContext();
 const AppProvider = ({ children }) => {
   const [isLogged, setIsLogged] = useState(false);
   const [isVisible,  setIsVisible] = useState(false);
-  const [elements, setElements] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [elements, setElements] = useState([]);
+  const [item, setItem] = useState()
   
   useEffect(() => {
     if (Cookies.get('token')!== undefined) {
@@ -24,7 +25,9 @@ const AppProvider = ({ children }) => {
       elements, 
       setElements,
       loading,
-      setLoading
+      setLoading,
+      item,
+      setItem
     }}>
       {children}
     </AppContext.Provider>

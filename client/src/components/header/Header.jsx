@@ -1,6 +1,5 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as userApi from '../../api/userApi'
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
 import { AppContext } from '../AppContext';
@@ -21,7 +20,7 @@ const Header = ({ setItems, fetchData, categories, setCategoryId }) => {
         }
     };
 
-    return (
+    return ( 
         <div className='header'>
             {isLogged ? (
                 <>
@@ -30,8 +29,10 @@ const Header = ({ setItems, fetchData, categories, setCategoryId }) => {
                         childrenClassName='header-profile'
                         scaleFrom={1}
                         scaleTo={1.2}
-                        childrenScaleFrom={1.7}
-                        childrenScaleTo={1.9}
+                        childrenScaleFrom={1.3}
+                        childrenScaleTo={1.5}
+                        childrenScaleFromForBig={1.7}
+                        childrenScaleToForBig={1.9}
                         onClick={() => navigate('/profile')}
                     >
                         <PersonRoundedIcon fontSize='large' />
@@ -54,6 +55,8 @@ const Header = ({ setItems, fetchData, categories, setCategoryId }) => {
                 className='header-button-categories'
                 scaleFrom={1}
                 scaleTo={1.2}
+                childrenScaleFromForBig={1.5}
+                childrenScaleToForBig={1.7}
                 childrenClassName={`header-button-arrow ${
                     menuOpen === 'opened' ? 'rotated' 
                     : menuOpen === 'closed' ? 'not-rotated' : ''}`}
@@ -71,10 +74,9 @@ const Header = ({ setItems, fetchData, categories, setCategoryId }) => {
                     <div className='header-dropdown-menu-field'>
                         {categories.map((category) => (
                             <HeaderCategories
-                                category={category} 
-                                setItems={setItems} 
-                                fetchData={fetchData}
+                                category={category}
                                 setCategoryId={setCategoryId}
+                                setMenuOpen={setMenuOpen}
                             />
                         ))}
                     </div>  

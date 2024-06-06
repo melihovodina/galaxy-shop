@@ -29,7 +29,7 @@ const PhoneList = ( { items, setItems, categoryId, fetchDataItems } ) => {
 
     return (
         <div className='phone-list-main'>
-            <PhoneListModels types={types} setItems={setItems} items={items}/>
+            <PhoneListModels types={types} setItems={setItems} items={items} categoryId={categoryId}/>
             <Loading loading={loading} loadingClass="loading">
                 <div className='phone-list-items loading'>
                     {items.map((item) => (<PhoneListItem item={item}/>))}

@@ -1,0 +1,75 @@
+.product-main {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    color: white;
+    overflow:hidden;
+}
+
+.product-field {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+}
+
+.product-header {
+    height: 100px;
+    margin-top: 10px;
+}
+
+.product-header-name {
+    font-family: 'Lexend-regular';
+    font-size: 35px;
+    margin: 0px 0px 0px 10px;
+    user-select: none;
+}
+
+.product-header-button {
+    width: 100px;
+    height: 45px;
+    border-radius: 20px;
+    background-color: rgba(52, 52, 52, 0.8);
+    font-family: 'Lexend-light';
+    color: white;
+    font-size: 20px;
+    margin: 2px 20px 0px 0px;
+    float: right;
+}
+
+.product {
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px 10px 10px 100px;
+}
+
+.product-image {
+    width: auto;
+    height: 450px;
+}
+
+.product-info {
+    width: 300px;
+}
+
+.product-name {
+    font-size: 40px;
+}
+
+.product-characteristics {
+    font-size: 25px;
+}
+
+.product-description {
+
+}
+
+.product-parameters {
+
+}
+
+.product-price {
+
+}
