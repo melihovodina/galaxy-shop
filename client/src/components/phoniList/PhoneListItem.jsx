@@ -3,7 +3,7 @@ import { AppContext } from '../AppContext'
 import { useNavigate } from 'react-router-dom'
 
 const PhoneListItem = ({ item }) => {
-  const { setItem } = useContext(AppContext)
+  const { setItem, isLogged } = useContext(AppContext)
   const navigate = useNavigate()
 
   const handleClick = () => {

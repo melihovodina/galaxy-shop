@@ -12,7 +12,7 @@ const Loading = ({ children, loading, loadingClass }) => {
       // Проверяем, есть ли у дочернего элемента свойство className
       // и содержит ли оно класс, указанный в loadingClass
       if (child.props.className && child.props.className.includes(loadingClass)) {
-        return <CircularProgress color='inherit' className='loading'/>; // Если условие выше истинно, то заменяем дочерний элемент на спиннер
+        return <CircularProgress color='inherit' className='loading' style={{ position: 'absolute', left: '50%', top: '50%' }}/>; // Если условие выше истинно, то заменяем дочерний элемент на спиннер
       }
       return child; // Если условие выше ложно, то возвращаем дочерний элемент без изменений
     });

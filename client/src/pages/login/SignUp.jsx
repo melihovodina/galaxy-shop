@@ -38,7 +38,7 @@ const SignUp = () => {
         if (response.status === 200) {
           setLoading(false)
           setIsLogged(true)
-          navigate('/main')
+          navigate('/codeConfirmation')
         }
       } else {
         setWindowMessage('Email and password must contain from 3 to 32 characters')
@@ -72,6 +72,7 @@ const SignUp = () => {
             childrenScaleToForBig={2.2} 
             colorFrom="white" 
             colorTo="rgb(233, 0, 0)"
+            keyTrigger="Escape"
             onClick={() => navigate('/main')}
             >
               <CloseRoundedIcon/>
@@ -106,6 +107,7 @@ const SignUp = () => {
             childrenScaleToForBig={3.2} 
             colorFrom="white" 
             colorTo="rgb(140, 233, 0)"
+            keyTrigger="Enter"
             onClick={() => handleSubmit()}
           >
             <CheckRoundedIcon fontSize='large'/>

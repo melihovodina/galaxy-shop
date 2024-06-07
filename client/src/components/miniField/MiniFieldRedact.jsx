@@ -4,6 +4,7 @@ import Products from './MiniFieldRedactInputs/Products';
 import Parameters from './MiniFieldRedactInputs/Parameters';
 import Types from './MiniFieldRedactInputs/Types'
 import './miniField.css'
+import Orders from './MiniFieldRedactInputs/Orders';
 
 const MiniFieldRedact = ({ windowDisplay, list }) => {
   const [content, setContent] = useState(null);
@@ -20,6 +21,7 @@ const MiniFieldRedact = ({ windowDisplay, list }) => {
             {list === 'products' && <Products windowDisplay={windowDisplay}/>}
             {/* {list === 'parameters' && <Parameters windowDisplay={windowDisplay}/>} */}
             {list === 'types' && <Types windowDisplay={windowDisplay}/>}
+            {list === 'orders' && <Orders windowDisplay={windowDisplay}/>}
           </div>
         )
     }

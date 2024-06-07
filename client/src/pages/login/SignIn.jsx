@@ -72,6 +72,7 @@ const SignIn = () => {
             childrenScaleToForBig={2.2} 
             colorFrom="white" 
             colorTo="rgb(233, 0, 0)"
+            keyTrigger="Escape"
             onClick={() => navigate('/main')}
             >
               <CloseRoundedIcon/>
@@ -106,6 +107,7 @@ const SignIn = () => {
             childrenScaleToForBig={3.2} 
             colorFrom="white" 
             colorTo="rgb(140, 233, 0)"
+            keyTrigger="Enter"
             onClick={() => handleSubmit()}
           >
             <CheckRoundedIcon fontSize='large'/>

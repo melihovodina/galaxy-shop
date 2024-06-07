@@ -331,3 +331,23 @@ export async function deleteProduct(id) {
         throw error;
     }
 }
+
+export async function updateOrder(id, status) {
+    try {
+      const result = await axios({
+        method: 'patch',
+        url: `/api/Orders/UpdateOrder`,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: {
+            id: id,
+            status: parseInt(status)
+        }
+      });
+      return result;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      throw error;
+    }
+}

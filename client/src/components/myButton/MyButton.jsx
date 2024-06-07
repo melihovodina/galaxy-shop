@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './myButton.css';
 
 const MyButton = ({
@@ -15,7 +15,8 @@ const MyButton = ({
   colorTo,
   className,
   childrenClassName,
-  onClick
+  onClick,
+  keyTrigger // add this prop to specify the key to trigger onClick
 }) => {
   const [isHovered, setIsHovered] = useState(null);
 
@@ -26,6 +27,19 @@ const MyButton = ({
   const handleMouseLeave = () => {
     setIsHovered('notHovered');
   };
+
+  const handleKeyPress = (event) => {
+    if (event.key === keyTrigger) {
+      onClick(); // trigger the onClick event
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyPress);
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [keyTrigger, onClick]);
 
   return (
     <button

@@ -6,7 +6,7 @@ import PhoneListItem from './PhoneListItem'
 import Loading from '../Loading'
 import './phoneList.css'
 
-const PhoneList = ( { items, setItems, categoryId, fetchDataItems } ) => {
+const PhoneList = ( { items, setItems, filteredItems, categoryId, fetchDataItems, setWindowMessage, setWindowTitle } ) => {
     const [types, setTypes] = useState([])
     const { setIsVisible, loading } = useContext(AppContext);
 
@@ -16,6 +16,8 @@ const PhoneList = ( { items, setItems, categoryId, fetchDataItems } ) => {
             setTypes(response.data);
         } catch (error) {
             console.error('Error fetching data:', error);
+            setWindowMessage('Server is not responding now, try later');
+            setWindowTitle('Error')
             setIsVisible(true)
         }
     };
@@ -32,7 +34,8 @@ const PhoneList = ( { items, setItems, categoryId, fetchDataItems } ) => {
             <PhoneListModels types={types} setItems={setItems} items={items} categoryId={categoryId}/>
             <Loading loading={loading} loadingClass="loading">
                 <div className='phone-list-items loading'>
-                    {items.map((item) => (<PhoneListItem item={item}/>))}
+                    {!filteredItems.length && items.map((item) => (<PhoneListItem item={item}/>))}
+                    {filteredItems.length > 0 && filteredItems.map((item) => (<PhoneListItem item={item}/>))}
                 </div>
             </Loading>
         </div>

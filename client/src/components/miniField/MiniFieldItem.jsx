@@ -66,6 +66,12 @@ const MiniFieldListItem = ({ element }) => {
           <p className="mini-field-list-text">{element.id}</p>
         </div>
       )}
+      {element.userId && (
+        <div className='mini-field-list-row'>
+          <p className='mini-field-list-text'>User id:</p>
+          <p className="mini-field-list-text">{element.userId}</p>
+        </div>
+      )}
       {element.parrentId && (
         <div className='mini-field-list-row'>
           <p className='mini-field-list-text'>Parrent id:</p>
@@ -94,6 +100,30 @@ const MiniFieldListItem = ({ element }) => {
         <div className='mini-field-list-row'>
           <p className='mini-field-list-text'>Type id:</p>
           <p className="mini-field-list-text">{element.typeId}</p>
+        </div>
+      )}
+      {element.dateOfCreate && (
+        <div className='mini-field-list-row'>
+          <p className='mini-field-list-text'>Ordered at:</p>
+          <p className="mini-field-list-text">{element.dateOfCreate.slice(0, 19).replace('T', ' ')}</p>
+        </div>
+      )}
+      {element.status && (
+        <div className='mini-field-list-row'>
+          <p className='mini-field-list-text'>Status:</p>
+          <p className="mini-field-list-text">{element.status}</p>
+        </div>
+      )}
+      {element.products?.[0]?.productId && (
+        <div className='mini-field-list-row'>
+          <p className='mini-field-list-text'>Product Id:</p>
+          <p className="mini-field-list-text">{element.products?.[0]?.productId}</p>
+        </div>
+      )}
+      {element.amount && (
+        <div className='mini-field-list-row'>
+          <p className='mini-field-list-text'>Price:</p>
+          <p className="mini-field-list-text">{element.amount}</p>
         </div>
       )}
     </div>

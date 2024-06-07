@@ -1,9 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import { checkKey } from '../../api/adminApi'
+import { confirmation } from '../../api/userApi';
 import { AppContext } from '../../components/AppContext';
 import FallingDots from '../../components/fallingDots/FallingDots'
 import Loading from '../../components/Loading';
@@ -11,8 +10,8 @@ import MyButton from '../../components/myButton/MyButton';
 import Window from '../../components/window/Window';
 import './login.css'
 
-const DevLogin = () => {
-  const [writtenKey, setWrittenKey] = useState('')
+const CodeConfirmation = () => {
+  const [code, setCode] = useState();
   const [windowMessage, setWindowMessage] = useState('');
   const { setIsVisible, setElements, loading, setLoading } = useContext(AppContext);
   const navigate = useNavigate();
@@ -32,16 +31,17 @@ const DevLogin = () => {
 
   const handleSubmit = async () => {
     try {
-      setLoading(true)
-      const response = await checkKey(writtenKey);
-      setLoading(false);
+      setLoading(true);
+      console.log(code)
+      const response = await confirmation(code);
       if (response.status === 200) {
-        Cookies.set('secretKey', writtenKey, {expires: 1})
-        navigate('/admin')
+        setLoading(false)
+        navigate('/main')
       }
     } catch (error) {
-      setWindowMessage('Incorrect secret key')
       setLoading(false);
+      setWindowMessage('Something gone wrong, try later')
+      setLoading(false)
       setIsVisible(true)
       console.error('Error fetching data:', error);
       throw error;
@@ -55,7 +55,7 @@ const DevLogin = () => {
         <Window/>
         <div className='login-field loading'>
           <div className='login-header'>
-            <h1 className='login-title'>dev mode</h1>
+            <h1 className='login-title-up'>Confirmation</h1>
             <MyButton 
             className='login-exit-button'
             childrenClassName='login-cross'
@@ -73,12 +73,14 @@ const DevLogin = () => {
           </div>
           <input 
           className='login-input' 
-          type='password' 
-          placeholder='Secret Key' 
-          maxLength={32}
-          value={writtenKey}  
-          onChange={(e) => setWrittenKey(e.target.value)}
-          />
+          placeholder='Code'
+          maxLength={32} 
+          value={code} 
+          onChange={(e) => setCode(e.target.value)}
+          /> 
+          <p className='login-text-code'>
+            We have sent a confirmation code to your email
+          </p>
           <MyButton 
             className='login-button'
             childrenClassName='login-check' 
@@ -101,4 +103,4 @@ const DevLogin = () => {
   )
 }
 
-export default DevLogin
+export default CodeConfirmation

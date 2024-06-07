@@ -16,7 +16,7 @@ export async function signIn(email, password) {
                 password: password
             }
         });
-        Cookies.set('token', (response.data.split(' '))[1], {expires: 1})
+        Cookies.set('token', (response.data), {expires: 1})
         return response;
     } catch (error) {
         console.error('Error fetching data:', error);
@@ -37,7 +37,6 @@ export async function signUp(email, password) {
                 password: password
             }
         });
-        Cookies.set('token', (response.data.split(' '))[1], {expires: 1})
         return response;
     } catch (error) {
         console.error('Error fetching data:', error);
@@ -45,11 +44,44 @@ export async function signUp(email, password) {
     }
 }
 
+export async function confirmation(code) {
+    try {
+      const response = await axios({
+        method: 'post',
+        url: '/api/Accounts/Confirmation',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: code
+      });
+      return response;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      throw error;
+    }
+  }
+
 export async function getUsers() {
     try {
         const response = await axios({
             method: 'get',
-            url: '/api/Accounts/GetUsers'
+            url: '/api/Accounts/GetUsers',
+        });
+        return response;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+}
+
+export async function getUserById() {
+    try {
+        const response = await axios({
+            method: 'get',
+            url: '/api/Accounts/GetUserById',
+            headers: {
+                'Authorization': Cookies.get('token')
+            }
         });
         return response;
     } catch (error) {
@@ -272,24 +304,21 @@ export async function getUsersOrders() {
     }
 }
 
-export async function createOrder(orderId, size) {
+export async function createOrder(orders) {
     try {
-        const response = await axios({
-            method: 'post',
-            url: '/api/Orders/CreateOrder',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': Cookies.get('token')
-            },
-            data: {
-                id: orderId,
-                size: size
-            }
-        });
-        return response;
+      const response = await axios({
+        method: 'post',
+        url: '/api/Orders/CreateOrder',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': Cookies.get('token')
+        },
+        data: orders
+      });
+      return response;
     } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error;
+      console.error('Error fetching data:', error);
+      throw error;
     }
 }
 

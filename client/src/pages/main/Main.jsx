@@ -9,8 +9,10 @@ import './main.css'
 
 const Main = () => {
   const [items, setItems] = useState([]);
+  const [filteredItems, setFilteredItems] = useState([]);
   const [categories, setCategories] = useState([])
   const [categoryId, setCategoryId] = useState('')
+  const [windowTitle, setWindowTitle] = useState('');
   const [windowMessage, setWindowMessage] = useState('');
   const { setIsVisible, setElements, setLoading } = useContext(AppContext);
 
@@ -23,6 +25,7 @@ const Main = () => {
     } catch (error) {
         console.error('Error fetching data:', error);
         setWindowMessage('Server is not responding now, try later');
+        setWindowTitle('Error')
         setIsVisible(true)
     }
     fetchData(response.data[0].id)
@@ -37,6 +40,7 @@ const Main = () => {
     } catch (error) {
         console.error('Error fetching data:', error);
         setWindowMessage('Server is not responding now, try later');
+        setWindowTitle('Error')
         setLoading(false)
         setIsVisible(true)
     }
@@ -48,7 +52,7 @@ const Main = () => {
 
   useEffect(() => {
     setElements([
-      { type: 'h1', text: 'Error' },
+      { type: 'h1', text: windowTitle },
       { type: 'p', text: windowMessage },
       { type: 'button',
         text: 'Ok',
@@ -63,17 +67,24 @@ const Main = () => {
     <div className='main'>
       <FallingDots/>
       <Window/>
-      <Header 
-        setItems={setItems} 
+      <Header
+        items={items} 
+        setItems={setItems}
+        setFilteredItems={setFilteredItems} 
         fetchData={fetchData} 
         categories={categories}
         setCategoryId={setCategoryId}
+        setWindowMessage={setWindowMessage}
+        setWindowTitle={setWindowTitle}
       />
       <PhoneList 
         items={items} 
         setItems={setItems}
+        filteredItems={filteredItems}
         categoryId={categoryId}
-        fetchDataItems={fetchData} 
+        fetchDataItems={fetchData}
+        setWindowMessage={setWindowMessage}
+        setWindowTitle={setWindowTitle} 
       />
     </div>
   )

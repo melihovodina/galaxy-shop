@@ -26,6 +26,7 @@
     flex-direction: row;
     justify-content: center;
     align-items:end;
+    text-align: center;
 }
 
 .login-title {
@@ -99,6 +100,17 @@
     cursor: pointer;
     user-select: none;
     position: relative;
+    text-align: center;
+}
+
+.login-text-code {
+    color: white;
+    font-size: 25px;
+    margin: 0;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    text-align: center;
 }
   
 .login-text::after {
@@ -141,7 +153,7 @@
     }
 
     .login-title-up {
-        font-size: 60px;
+        font-size: 35px;
         margin-right: 11%;
         margin-left: 22%;
     }
@@ -156,6 +168,10 @@
 
     .login-input {
         width: 80%;
+    }
+
+    .login-text-code {
+        font-size: 15px;
     }
 
     .login-text {
@@ -200,6 +216,10 @@
     }
 
     .login-text {
+        font-size: 40px;
+    }
+
+    .login-text-code {
         font-size: 40px;
     }
 

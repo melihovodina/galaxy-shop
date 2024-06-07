@@ -115,6 +115,18 @@ const MiniField = ({ list }) => {
                     </MyButton>
                 </div>
             }
+            {list === 'orders' &&
+                <div className='mini-field-buttons'>
+                    <MyButton 
+                        className='mini-field-button'
+                        scaleFrom={1} 
+                        scaleTo={1.2}
+                        onClick={()=>setWindowDisplay('Update')}
+                    >
+                        <>Update</>
+                    </MyButton>
+                </div>
+            }
         </div>
     )
 }
