@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import * as userApi from '../../api/userApi'
+import * as adminApi from '../../api/adminApi'
 import Loading from '../Loading'
 import MyButton from '../myButton/MyButton'
 import MiniFieldListItem from './MiniFieldItem'
@@ -117,6 +118,14 @@ const MiniField = ({ list }) => {
             }
             {list === 'orders' &&
                 <div className='mini-field-buttons'>
+                    <MyButton 
+                        className='mini-field-button'
+                        scaleFrom={1} 
+                        scaleTo={1.2}
+                        onClick={()=>adminApi.downloadOrders(new Date('2023-01-01T00:00:00'), new Date('2025-06-08T00:00:00'))}
+                    >
+                        <>Download</>
+                    </MyButton>
                     <MyButton 
                         className='mini-field-button'
                         scaleFrom={1} 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import formData from 'form-data';
 import Cookies from 'js-cookie';
-import _ from 'lodash'
+import _, { dropRight } from 'lodash'
 
 axios.defaults.baseURL = 'http://localhost:5299';
 
@@ -351,3 +351,31 @@ export async function updateOrder(id, status) {
       throw error;
     }
 }
+
+export async function downloadOrders(startDate, endDate) {
+    try {
+      await fetch('http://localhost:5299/api/Orders/DownloadExcel?' + new URLSearchParams({
+        leftBorder: startDate.toISOString(),
+        rightBorder: endDate.toISOString()
+      }), 
+      {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        }
+      })
+     .then(response => response.blob())
+     .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = 'Report.xls';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      });
+    } catch (error) {
+      console.error('Error downloading orders:', error);
+    }
+  }
