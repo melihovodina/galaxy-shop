@@ -10,6 +10,7 @@ const ButtonList = ({ buttons, setList }) => {
       Types: 'types',
       Products: 'products',
       Orders: 'orders',
+      Users: 'users'
     };
     setList(listValues[buttonText]);
   };

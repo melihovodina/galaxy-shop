@@ -16,7 +16,7 @@ export async function signIn(email, password) {
                 password: password
             }
         });
-        Cookies.set('token', (response.data), {expires: 1})
+        Cookies.set('token', response.data, {expires: 1})
         return response;
     } catch (error) {
         console.error('Error fetching data:', error);
@@ -66,9 +66,13 @@ export async function getUsers() {
         const response = await axios({
             method: 'get',
             url: '/api/Accounts/GetUsers',
-        });
+            headers: {
+                'Authorization': Cookies.get('token')
+            }
+        })
         return response;
     } catch (error) {
+        console.log(Cookies.get('token'))
         console.error('Error fetching data:', error);
         throw error;
     }

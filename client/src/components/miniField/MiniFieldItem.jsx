@@ -126,6 +126,18 @@ const MiniFieldListItem = ({ element }) => {
           <p className="mini-field-list-text">{element.amount}</p>
         </div>
       )}
+      {element.email && (
+        <div className='mini-field-list-row'>
+          <p className='mini-field-list-text'>Email:</p>
+          <p className="mini-field-list-text">{element.email}</p>
+        </div>
+      )}
+      {element.dateOfReg && (
+        <div className='mini-field-list-row'>
+          <p className='mini-field-list-text'>Registration's date:</p>
+          <p className="mini-field-list-text">{element.dateOfReg.slice(0, 19).replace('T', ' ')}</p>
+        </div>
+      )}
     </div>
   );
 };

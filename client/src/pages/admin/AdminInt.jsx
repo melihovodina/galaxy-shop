@@ -35,6 +35,7 @@ const AdminInt = () => {
     {text: 'Types'},
     {text: 'Products'},
     {text: 'Orders'},
+    {text: 'Users'}
   ];
 
   return (

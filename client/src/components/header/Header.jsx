@@ -55,7 +55,7 @@ const Header = ({ items, setFilteredItems, categories, setCategoryId, setWindowM
                         className='header-button'
                         scaleFrom={1}
                         scaleTo={1.2}
-                        onClick={() => exit}
+                        onClick={() => exit()}
                     >
                         <>Exit</>
                     </MyButton>

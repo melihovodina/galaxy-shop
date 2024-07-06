@@ -37,7 +37,6 @@ const SignUp = () => {
         const response = await signUp(email, password);
         if (response.status === 200) {
           setLoading(false)
-          setIsLogged(true)
           navigate('/codeConfirmation')
         }
       } else {

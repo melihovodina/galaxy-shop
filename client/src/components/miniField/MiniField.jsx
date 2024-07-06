@@ -61,6 +61,14 @@ const MiniField = ({ list }) => {
                     console.log(error)
                 }
                 break;
+            case 'users':
+                try {
+                    result = await userApi.getUsers();
+                    setInfo(result)
+                } catch (error) {
+                    console.log(error)
+                }
+                break;
             default:
                 try {
                     result = await userApi.getCategories();
@@ -88,7 +96,7 @@ const MiniField = ({ list }) => {
                 </div>
             </Loading>
             </div>
-            {list !== 'orders' &&
+            {list !== 'orders' && list !== 'users' &&
                 <div className='mini-field-buttons'>
                     <MyButton 
                         className='mini-field-button'
